@@ -10,6 +10,7 @@ import Socket from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { socketConnect } from './redux/socketReducer';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
 
 // styled-components 전역 설정
 // theme을 전달하려면 react-app-env.d.ts에서 관련 타입을 정의해야함
@@ -43,10 +44,15 @@ const GlobalStyle = createGlobalStyle`
       background:  ${(props) => props.theme.scrollbarTrack};
     }
   }
+
+  #root {
+    overflow-x: hidden;
+  }
 `;
 
 const Container = styled.div`
   width: 100vw;
+  height: 100vh;
 `;
 
 function App() {
@@ -61,6 +67,11 @@ function App() {
       <Container>
         <GlobalStyle theme={darkMode ? darkTheme : lightTheme} />
         <Navbar />
+        <Routes>
+          <Route path={'/'}>
+            <Route index element={<Home />} />
+          </Route>
+        </Routes>
       </Container>
     </ThemeProvider>
   );

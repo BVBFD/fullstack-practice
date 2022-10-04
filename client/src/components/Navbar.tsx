@@ -2,11 +2,12 @@ import { Search, ShoppingBag } from '@mui/icons-material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { mobile } from '../utils/responsive';
 
 const Container = styled.div`
   width: 100%;
   height: 10vh;
-  background-color: black;
+  background: black;
   color: white;
   display: flex;
   flex-direction: row;
@@ -17,23 +18,58 @@ const LogoBox = styled.div`
   flex: 2;
   display: flex;
   justify-content: center;
+  ${mobile(1280, {
+    flex: '1.5',
+  })}
 `;
 
 const LogoImg = styled.img`
   height: 8vh;
   border-radius: 50%;
   cursor: pointer;
+  ${mobile(1280, {
+    height: '8vh',
+  })}
+  ${mobile(960, {
+    height: '6vh',
+  })}
+   ${mobile('SurfacePro', {
+    height: '5.6vh',
+  })}
 `;
 
 const MenuBox = styled.div`
-  flex: 4;
+  flex: 2;
   display: flex;
   justify-content: center;
 
   a {
-    margin: 0 1rem;
     font-size: 1.5rem;
     cursor: pointer;
+    ${mobile(1280, {
+      fontSize: '1.4rem',
+      fontWeight: 'bolder',
+    })}
+    ${mobile(960, {
+      fontSize: '1.45rem',
+      fontWeight: 'bolder',
+    })}
+    ${mobile(768, {
+      fontSize: '1.3rem',
+      fontWeight: 'bolder',
+    })}
+    ${mobile('SurfacePro', {
+      fontSize: '1.5rem',
+      fontWeight: 'bolder',
+    })}
+    ${mobile('IpadAir', {
+      fontSize: '1.4rem',
+      fontWeight: 'bolder',
+    })}
+    ${mobile('IpadMini', {
+      fontSize: '1.3rem',
+      fontWeight: 'bolder',
+    })}
 
     &:hover {
       color: goldenrod;
@@ -41,7 +77,18 @@ const MenuBox = styled.div`
   }
 `;
 
-const MenuText = styled.span``;
+const MenuText = styled.span`
+  margin: 0 1rem;
+  ${mobile(1280, {
+    margin: '0 1rem',
+  })}
+  ${mobile(1024, {
+    margin: '0 0.8rem',
+  })}
+  ${mobile(960, {
+    margin: '0 0.6rem',
+  })}
+`;
 
 const CartSearchBox = styled.div`
   flex: 2;
@@ -52,7 +99,21 @@ const CartSearchBox = styled.div`
     font-size: 2.2rem;
     margin: 0 1rem;
     cursor: pointer;
-
+    ${mobile(1280, {
+      margin: '0 0.6rem',
+    })}
+    ${mobile(960, {
+      fontSize: '1.8rem',
+      margin: '0 0.6rem',
+    })}
+    ${mobile(768, {
+      fontSize: '1.6rem',
+      margin: '0 0.4rem',
+    })}
+    ${mobile('IpadAir', {
+      fontSize: '1.6rem',
+      margin: '0 0.3rem',
+    })}
     &:hover {
       color: goldenrod;
     }
