@@ -65,7 +65,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setProp({ test: `${process.env.REACT_APP_TEST}` });
+    setProp({ test: `${import.meta.env.VITE_TEST}` });
     // SocketIO 연결시 client socket 객체 생성
     // const socket = Socket(`server url`).connect();
     // dispatch(socketConnect(socket));

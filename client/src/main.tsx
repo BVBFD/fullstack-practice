@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
+import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {
@@ -10,10 +10,7 @@ import {
 } from './redux/store';
 // import { PersistGate } from 'redux-persist/integration/react';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       {/* <PersistGate loading={null} persistor={persistor}> */}
@@ -24,4 +21,5 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-// redux-persist 관련 코드 주석처리
+
+// persiste redux 관련 코드는 주석처리함..

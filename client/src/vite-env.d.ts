@@ -1,4 +1,4 @@
-/// <reference types="react-scripts" />
+/// <reference types="vite/client" />
 import 'styled-components';
 
 declare module 'styled-components' {

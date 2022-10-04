@@ -28,6 +28,7 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
+  // reducer: persistedReducer,
 
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({
@@ -39,4 +40,5 @@ export const store = configureStore({
 
 // export let persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
-// redux-persist 관련 코드 주석처리
+
+// persiste redux 관련 코드는 주석처리함..
