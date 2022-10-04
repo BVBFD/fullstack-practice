@@ -15,7 +15,7 @@ const app = express();
 console.log(process.env.TEST);
 
 const corsOpt = {
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: 'http://127.0.0.1:5173',
   optionsSuccessStatus: 200,
   credentials: true,
 };
