@@ -12,6 +12,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
 `;
 
 const LogoBox = styled.div`
@@ -120,6 +123,8 @@ const CartSearchBox = styled.div`
   }
 `;
 
+const ATag = styled.a``;
+
 const Navbar = () => {
   return (
     <Container>
@@ -129,27 +134,27 @@ const Navbar = () => {
         </Link>
       </LogoBox>
       <MenuBox>
-        <Link to={'/'}>
+        <ATag href='#home'>
           <MenuText>Home</MenuText>
-        </Link>
-        <Link to={'/about'}>
+        </ATag>
+        <ATag href='#about'>
           <MenuText>About</MenuText>
-        </Link>
-        <Link to={'/menu'}>
+        </ATag>
+        <ATag href='#menu'>
           <MenuText>Menu</MenuText>
-        </Link>
-        <Link to={'/products'}>
+        </ATag>
+        <ATag href='#products'>
           <MenuText>Products</MenuText>
-        </Link>
-        <Link to={'/review'}>
+        </ATag>
+        <ATag href='#review'>
           <MenuText>Review</MenuText>
-        </Link>
-        <Link to={'/contact'}>
+        </ATag>
+        <ATag href='#contact'>
           <MenuText>Contact</MenuText>
-        </Link>
-        <Link to={'/blogs'}>
+        </ATag>
+        <ATag href='#blogs'>
           <MenuText>Blogs</MenuText>
-        </Link>
+        </ATag>
       </MenuBox>
       <CartSearchBox>
         <Search />

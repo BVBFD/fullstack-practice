@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
     transition: all 0.2s linear;
     user-select: none;
+    scroll-behavior: smooth;
   }
 
   a {
@@ -31,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
-  body {
+  html {
     &::-webkit-scrollbar {
       width: 0.4rem;
     }
@@ -41,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     &::-webkit-scrollbar-track {
-      background:  ${(props) => props.theme.scrollbarTrack};
+      background: ${(props) => props.theme.scrollbarTrack};
     }
   }
 
@@ -52,7 +53,8 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 700vh;
+  background-color: black;
 `;
 
 function App() {
