@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mobile } from '../utils/responsive';
 
 const HomeSec = styled.section`
   width: 100%;
-  height: 100vh;
 `;
 
 const Wrapper = styled.div`
@@ -31,6 +31,18 @@ const TextBox = styled.div`
   flex-direction: column;
   color: white;
   z-index: 999;
+  ${mobile(1280, {
+    top: '40vh',
+  })}
+  ${mobile(1024, {
+    textAlign: 'center',
+    left: '5vh',
+    top: '50vh',
+  })}
+  ${mobile(960, {
+    top: '25vh',
+    left: '0',
+  })}
 `;
 
 const TextSpan = styled.span`
@@ -51,11 +63,11 @@ const TextP = styled.p`
 
 const Sec = styled.section`
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 8rem;
 `;
 
 const Header = styled.header`
@@ -80,6 +92,10 @@ const ExplainBox = styled.div`
   padding: 4rem;
   gap: 2rem;
   margin: 3rem 6rem;
+
+  ${mobile(1024, {
+    flexDirection: 'column',
+  })}
 `;
 
 const ImgBox = styled.div`
@@ -92,6 +108,10 @@ const ImgBox = styled.div`
     object-fit: cover;
     border-radius: 1rem;
   }
+
+  ${mobile(1024, {
+    width: '100%',
+  })}
 `;
 
 const CommBox = styled.div`
@@ -101,6 +121,10 @@ const CommBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  ${mobile(1024, {
+    width: '100%',
+  })}
 
   span,
   button {
@@ -143,6 +167,71 @@ const CommBox = styled.div`
   }
 `;
 
+const GridBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  width: 80%;
+  gap: 6rem;
+  margin-top: 2rem;
+  ${mobile(1024, {
+    width: '60%',
+  })}
+
+  .box {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 1rem;
+
+    img {
+      width: 100%;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+
+    .name {
+      font-size: 2rem;
+      font-weight: bolder;
+      margin: 1rem 0;
+    }
+
+    .priceBox {
+      margin-bottom: 1rem;
+
+      span:first-child {
+        font-size: 1.8rem;
+        margin-right: 0.8rem;
+      }
+
+      span:last-child {
+        font-size: 1.2rem;
+        text-decoration: line-through;
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      padding: 0.5rem 1.3rem;
+      color: white;
+      background-color: goldenrod;
+      cursor: pointer;
+
+      &:hover {
+        color: goldenrod;
+        background-color: white;
+      }
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+  }
+`;
+
 const Home = () => {
   return (
     <>
@@ -182,6 +271,67 @@ const Home = () => {
             <button>Learn More</button>
           </CommBox>
         </ExplainBox>
+      </Sec>
+      <Sec id='menu'>
+        <Header>
+          Our <HeaderSpan>Menu</HeaderSpan>
+        </Header>
+        <GridBox>
+          <div className='box'>
+            <img src='../images/menu-1.png' alt='' />
+            <span className='name'>Americano</span>
+            <div className='priceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button>Add To Cart</button>
+          </div>
+          <div className='box'>
+            <img src='../images/menu-1.png' alt='' />
+            <span className='name'>Americano</span>
+            <div className='priceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button>Add To Cart</button>
+          </div>
+          <div className='box'>
+            <img src='../images/menu-1.png' alt='' />
+            <span className='name'>Americano</span>
+            <div className='priceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button>Add To Cart</button>
+          </div>
+          <div className='box'>
+            <img src='../images/menu-1.png' alt='' />
+            <span className='name'>Americano</span>
+            <div className='priceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button>Add To Cart</button>
+          </div>
+          <div className='box'>
+            <img src='../images/menu-1.png' alt='' />
+            <span className='name'>Americano</span>
+            <div className='priceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button>Add To Cart</button>
+          </div>
+          <div className='box'>
+            <img src='../images/menu-1.png' alt='' />
+            <span className='name'>Americano</span>
+            <div className='priceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button>Add To Cart</button>
+          </div>
+        </GridBox>
       </Sec>
     </>
   );
