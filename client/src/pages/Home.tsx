@@ -1,3 +1,4 @@
+import { Favorite, ShoppingCart, Visibility } from '@mui/icons-material';
 import React from 'react';
 import styled from 'styled-components';
 import { mobile } from '../utils/responsive';
@@ -24,23 +25,25 @@ const Img = styled.img``;
 
 const TextBox = styled.div`
   position: absolute;
-  top: 30vh;
-  left: 10vh;
+  width: 100%;
+  height: 100%;
+  top: 40%;
+  left: 5%;
   background: transparent;
   display: flex;
   flex-direction: column;
   color: white;
   z-index: 999;
   ${mobile(1280, {
-    top: '40vh',
-  })}
-  ${mobile(1024, {
     textAlign: 'center',
-    left: '5vh',
-    top: '50vh',
+    left: '0',
   })}
   ${mobile(960, {
-    top: '25vh',
+    top: '35%',
+    left: '0',
+  })}
+  ${mobile(768, {
+    top: '25%',
     left: '0',
   })}
 `;
@@ -64,6 +67,7 @@ const TextP = styled.p`
 const Sec = styled.section`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -169,9 +173,9 @@ const CommBox = styled.div`
 
 const GridBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   width: 80%;
-  gap: 6rem;
+  gap: 2rem;
   margin-top: 2rem;
   ${mobile(1024, {
     width: '60%',
@@ -186,23 +190,72 @@ const GridBox = styled.div`
     border: 1px solid white;
     border-radius: 1rem;
 
+    /* products */
+    &.productsBox {
+      height: 95%;
+
+      .productLogoBox {
+        display: flex;
+        margin-bottom: 1.4rem;
+
+        .productLogo {
+          border: 1px solid white;
+          width: 2.8rem;
+          height: 2.8rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          svg {
+            transform: scale(1.2);
+          }
+
+          &:hover {
+            color: goldenrod;
+            background-color: white;
+          }
+
+          &:active {
+            transform: scale(0.8);
+          }
+        }
+      }
+    }
+
+    /* menu */
     img {
       width: 100%;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
     }
 
+    /* products */
+    .productsImg {
+      width: 50%;
+      height: 45%;
+    }
+
+    /* menu */
     .name {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: bolder;
       margin: 1rem 0;
     }
 
+    /* products */
+    .productsName {
+      font-size: 1.6rem;
+      font-weight: bolder;
+      margin: 1rem 0;
+    }
+
+    /* menu */
     .priceBox {
       margin-bottom: 1rem;
 
       span:first-child {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         margin-right: 0.8rem;
       }
 
@@ -212,9 +265,43 @@ const GridBox = styled.div`
       }
     }
 
-    button {
+    /* products */
+    .productsPriceBox {
+      margin-bottom: 1rem;
+
+      span:first-child {
+        font-size: 1.6rem;
+        margin-right: 0.8rem;
+      }
+
+      span:last-child {
+        font-size: 1.2rem;
+        text-decoration: line-through;
+      }
+    }
+
+    /* menu */
+    .menuBoxBtn {
       margin-top: 1rem;
       margin-bottom: 2rem;
+      padding: 0.5rem 1.3rem;
+      color: white;
+      background-color: goldenrod;
+      cursor: pointer;
+
+      &:hover {
+        color: goldenrod;
+        background-color: white;
+      }
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+
+    /* products */
+    .productsPriceBoxBtn {
+      margin-top: 0.4rem;
       padding: 0.5rem 1.3rem;
       color: white;
       background-color: goldenrod;
@@ -284,7 +371,7 @@ const Home = () => {
               <span>$4.99</span>
               <span>5.99</span>
             </div>
-            <button>Add To Cart</button>
+            <button className='menuBoxBtn'>Add To Cart</button>
           </div>
           <div className='box'>
             <img src='../images/menu-1.png' alt='' />
@@ -293,7 +380,7 @@ const Home = () => {
               <span>$4.99</span>
               <span>5.99</span>
             </div>
-            <button>Add To Cart</button>
+            <button className='menuBoxBtn'>Add To Cart</button>
           </div>
           <div className='box'>
             <img src='../images/menu-1.png' alt='' />
@@ -302,7 +389,7 @@ const Home = () => {
               <span>$4.99</span>
               <span>5.99</span>
             </div>
-            <button>Add To Cart</button>
+            <button className='menuBoxBtn'>Add To Cart</button>
           </div>
           <div className='box'>
             <img src='../images/menu-1.png' alt='' />
@@ -311,7 +398,7 @@ const Home = () => {
               <span>$4.99</span>
               <span>5.99</span>
             </div>
-            <button>Add To Cart</button>
+            <button className='menuBoxBtn'>Add To Cart</button>
           </div>
           <div className='box'>
             <img src='../images/menu-1.png' alt='' />
@@ -320,7 +407,7 @@ const Home = () => {
               <span>$4.99</span>
               <span>5.99</span>
             </div>
-            <button>Add To Cart</button>
+            <button className='menuBoxBtn'>Add To Cart</button>
           </div>
           <div className='box'>
             <img src='../images/menu-1.png' alt='' />
@@ -329,7 +416,139 @@ const Home = () => {
               <span>$4.99</span>
               <span>5.99</span>
             </div>
-            <button>Add To Cart</button>
+            <button className='menuBoxBtn'>Add To Cart</button>
+          </div>
+        </GridBox>
+      </Sec>
+      <Sec id='products'>
+        <Header>
+          Our <HeaderSpan>Products</HeaderSpan>
+        </Header>
+        <GridBox>
+          <div className='box productsBox'>
+            <div className='productLogoBox'>
+              <div className='productLogo'>
+                <ShoppingCart />
+              </div>
+              <div className='productLogo'>
+                <Favorite />
+              </div>
+              <div className='productLogo'>
+                <Visibility />
+              </div>
+            </div>
+            <img className='productsImg' src='../images/product-2.png' alt='' />
+            <span className='productsName'>Americano</span>
+            <div className='productsPriceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button className='productsPriceBoxBtn'>Add To Cart</button>
+          </div>
+
+          <div className='box productsBox'>
+            <div className='productLogoBox'>
+              <div className='productLogo'>
+                <ShoppingCart />
+              </div>
+              <div className='productLogo'>
+                <Favorite />
+              </div>
+              <div className='productLogo'>
+                <Visibility />
+              </div>
+            </div>
+            <img className='productsImg' src='../images/product-2.png' alt='' />
+            <span className='productsName'>Americano</span>
+            <div className='productsPriceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button className='productsPriceBoxBtn'>Add To Cart</button>
+          </div>
+
+          <div className='box productsBox'>
+            <div className='productLogoBox'>
+              <div className='productLogo'>
+                <ShoppingCart />
+              </div>
+              <div className='productLogo'>
+                <Favorite />
+              </div>
+              <div className='productLogo'>
+                <Visibility />
+              </div>
+            </div>
+            <img className='productsImg' src='../images/product-2.png' alt='' />
+            <span className='productsName'>Americano</span>
+            <div className='productsPriceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button className='productsPriceBoxBtn'>Add To Cart</button>
+          </div>
+
+          <div className='box productsBox'>
+            <div className='productLogoBox'>
+              <div className='productLogo'>
+                <ShoppingCart />
+              </div>
+              <div className='productLogo'>
+                <Favorite />
+              </div>
+              <div className='productLogo'>
+                <Visibility />
+              </div>
+            </div>
+            <img className='productsImg' src='../images/product-2.png' alt='' />
+            <span className='productsName'>Americano</span>
+            <div className='productsPriceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button className='productsPriceBoxBtn'>Add To Cart</button>
+          </div>
+
+          <div className='box productsBox'>
+            <div className='productLogoBox'>
+              <div className='productLogo'>
+                <ShoppingCart />
+              </div>
+              <div className='productLogo'>
+                <Favorite />
+              </div>
+              <div className='productLogo'>
+                <Visibility />
+              </div>
+            </div>
+            <img className='productsImg' src='../images/product-2.png' alt='' />
+            <span className='productsName'>Americano</span>
+            <div className='productsPriceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button className='productsPriceBoxBtn'>Add To Cart</button>
+          </div>
+
+          <div className='box productsBox'>
+            <div className='productLogoBox'>
+              <div className='productLogo'>
+                <ShoppingCart />
+              </div>
+              <div className='productLogo'>
+                <Favorite />
+              </div>
+              <div className='productLogo'>
+                <Visibility />
+              </div>
+            </div>
+            <img className='productsImg' src='../images/product-2.png' alt='' />
+            <span className='productsName'>Americano</span>
+            <div className='productsPriceBox'>
+              <span>$4.99</span>
+              <span>5.99</span>
+            </div>
+            <button className='productsPriceBoxBtn'>Add To Cart</button>
           </div>
         </GridBox>
       </Sec>

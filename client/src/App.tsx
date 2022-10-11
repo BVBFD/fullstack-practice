@@ -53,7 +53,6 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   width: 100vw;
-  height: 700vh;
   background-color: black;
 `;
 
