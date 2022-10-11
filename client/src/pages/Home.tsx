@@ -1,6 +1,7 @@
-import { Favorite, ShoppingCart, Visibility } from '@mui/icons-material';
 import React from 'react';
 import styled from 'styled-components';
+import Menubox from '../components/Menubox';
+import Productbox from '../components/Productbox';
 import { mobile } from '../utils/responsive';
 
 const HomeSec = styled.section`
@@ -364,60 +365,16 @@ const Home = () => {
           Our <HeaderSpan>Menu</HeaderSpan>
         </Header>
         <GridBox>
-          <div className='box'>
-            <img src='../images/menu-1.png' alt='' />
-            <span className='name'>Americano</span>
-            <div className='priceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='menuBoxBtn'>Add To Cart</button>
-          </div>
-          <div className='box'>
-            <img src='../images/menu-1.png' alt='' />
-            <span className='name'>Americano</span>
-            <div className='priceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='menuBoxBtn'>Add To Cart</button>
-          </div>
-          <div className='box'>
-            <img src='../images/menu-1.png' alt='' />
-            <span className='name'>Americano</span>
-            <div className='priceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='menuBoxBtn'>Add To Cart</button>
-          </div>
-          <div className='box'>
-            <img src='../images/menu-1.png' alt='' />
-            <span className='name'>Americano</span>
-            <div className='priceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='menuBoxBtn'>Add To Cart</button>
-          </div>
-          <div className='box'>
-            <img src='../images/menu-1.png' alt='' />
-            <span className='name'>Americano</span>
-            <div className='priceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='menuBoxBtn'>Add To Cart</button>
-          </div>
-          <div className='box'>
-            <img src='../images/menu-1.png' alt='' />
-            <span className='name'>Americano</span>
-            <div className='priceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='menuBoxBtn'>Add To Cart</button>
-          </div>
+          <Menubox />
+          <Menubox />
+          <Menubox />
+          <Menubox />
+          <Menubox />
+          <Menubox />
+          <Menubox />
+          <Menubox />
+          <Menubox />
+          <Menubox />
         </GridBox>
       </Sec>
       <Sec id='products'>
@@ -425,131 +382,16 @@ const Home = () => {
           Our <HeaderSpan>Products</HeaderSpan>
         </Header>
         <GridBox>
-          <div className='box productsBox'>
-            <div className='productLogoBox'>
-              <div className='productLogo'>
-                <ShoppingCart />
-              </div>
-              <div className='productLogo'>
-                <Favorite />
-              </div>
-              <div className='productLogo'>
-                <Visibility />
-              </div>
-            </div>
-            <img className='productsImg' src='../images/product-2.png' alt='' />
-            <span className='productsName'>Americano</span>
-            <div className='productsPriceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='productsPriceBoxBtn'>Add To Cart</button>
-          </div>
-
-          <div className='box productsBox'>
-            <div className='productLogoBox'>
-              <div className='productLogo'>
-                <ShoppingCart />
-              </div>
-              <div className='productLogo'>
-                <Favorite />
-              </div>
-              <div className='productLogo'>
-                <Visibility />
-              </div>
-            </div>
-            <img className='productsImg' src='../images/product-2.png' alt='' />
-            <span className='productsName'>Americano</span>
-            <div className='productsPriceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='productsPriceBoxBtn'>Add To Cart</button>
-          </div>
-
-          <div className='box productsBox'>
-            <div className='productLogoBox'>
-              <div className='productLogo'>
-                <ShoppingCart />
-              </div>
-              <div className='productLogo'>
-                <Favorite />
-              </div>
-              <div className='productLogo'>
-                <Visibility />
-              </div>
-            </div>
-            <img className='productsImg' src='../images/product-2.png' alt='' />
-            <span className='productsName'>Americano</span>
-            <div className='productsPriceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='productsPriceBoxBtn'>Add To Cart</button>
-          </div>
-
-          <div className='box productsBox'>
-            <div className='productLogoBox'>
-              <div className='productLogo'>
-                <ShoppingCart />
-              </div>
-              <div className='productLogo'>
-                <Favorite />
-              </div>
-              <div className='productLogo'>
-                <Visibility />
-              </div>
-            </div>
-            <img className='productsImg' src='../images/product-2.png' alt='' />
-            <span className='productsName'>Americano</span>
-            <div className='productsPriceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='productsPriceBoxBtn'>Add To Cart</button>
-          </div>
-
-          <div className='box productsBox'>
-            <div className='productLogoBox'>
-              <div className='productLogo'>
-                <ShoppingCart />
-              </div>
-              <div className='productLogo'>
-                <Favorite />
-              </div>
-              <div className='productLogo'>
-                <Visibility />
-              </div>
-            </div>
-            <img className='productsImg' src='../images/product-2.png' alt='' />
-            <span className='productsName'>Americano</span>
-            <div className='productsPriceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='productsPriceBoxBtn'>Add To Cart</button>
-          </div>
-
-          <div className='box productsBox'>
-            <div className='productLogoBox'>
-              <div className='productLogo'>
-                <ShoppingCart />
-              </div>
-              <div className='productLogo'>
-                <Favorite />
-              </div>
-              <div className='productLogo'>
-                <Visibility />
-              </div>
-            </div>
-            <img className='productsImg' src='../images/product-2.png' alt='' />
-            <span className='productsName'>Americano</span>
-            <div className='productsPriceBox'>
-              <span>$4.99</span>
-              <span>5.99</span>
-            </div>
-            <button className='productsPriceBoxBtn'>Add To Cart</button>
-          </div>
+          <Productbox />
+          <Productbox />
+          <Productbox />
+          <Productbox />
+          <Productbox />
+          <Productbox />
+          <Productbox />
+          <Productbox />
+          <Productbox />
+          <Productbox />
         </GridBox>
       </Sec>
     </>
