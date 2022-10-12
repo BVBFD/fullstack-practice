@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShoppingCart, Favorite, Visibility } from '@mui/icons-material';
 
-const ProductBox = () => {
+const Productbox = () => {
   return (
     <div className='box productsBox'>
       <div className='productLogoBox'>
@@ -26,4 +26,4 @@ const ProductBox = () => {
   );
 };
 
-export default ProductBox;
+export default Productbox;

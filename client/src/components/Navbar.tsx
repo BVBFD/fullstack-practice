@@ -1,7 +1,10 @@
 import { Search, ShoppingBag } from '@mui/icons-material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { setNavbar } from '../redux/navbarReducer';
+import { RootState } from '../redux/store';
 import { mobile } from '../utils/responsive';
 
 const Container = styled.div`
@@ -123,9 +126,32 @@ const CartSearchBox = styled.div`
   }
 `;
 
-const ATag = styled.a``;
-
 const Navbar = () => {
+  const navbar = useSelector((state: RootState) => state.navbar.navbar);
+  const dispatch = useDispatch();
+
+  const handleNavbarClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    dispatch(setNavbar(e.currentTarget.innerText.toLowerCase()));
+  };
+
+  useEffect(() => {
+    const moveToHome = `${window.location.protocol}//${window.location.host}/#`;
+    const moveToElse = `${window.location.protocol}//${window.location.host}/#${navbar}`;
+    if (navbar === 'home' || navbar == null) {
+      window.location.href = `${moveToHome}`;
+    } else {
+      window.location.href = `${moveToElse}`;
+    }
+  }, [navbar]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setNavbar(null));
+    };
+  }, []);
+
   return (
     <Container>
       <LogoBox>
@@ -134,27 +160,27 @@ const Navbar = () => {
         </Link>
       </LogoBox>
       <MenuBox>
-        <ATag href='#home'>
+        <Link to='/' onClick={handleNavbarClick}>
           <MenuText>Home</MenuText>
-        </ATag>
-        <ATag href='#about'>
+        </Link>
+        <Link to='/' onClick={handleNavbarClick}>
           <MenuText>About</MenuText>
-        </ATag>
-        <ATag href='#menu'>
+        </Link>
+        <Link to='/' onClick={handleNavbarClick}>
           <MenuText>Menu</MenuText>
-        </ATag>
-        <ATag href='#products'>
+        </Link>
+        <Link to='/' onClick={handleNavbarClick}>
           <MenuText>Products</MenuText>
-        </ATag>
-        <ATag href='#review'>
+        </Link>
+        <Link to='/' onClick={handleNavbarClick}>
           <MenuText>Review</MenuText>
-        </ATag>
-        <ATag href='#contact'>
+        </Link>
+        <Link to='/contact'>
           <MenuText>Contact</MenuText>
-        </ATag>
-        <ATag href='#blogs'>
+        </Link>
+        <Link to='/blogs'>
           <MenuText>Blogs</MenuText>
-        </ATag>
+        </Link>
       </MenuBox>
       <CartSearchBox>
         <Search />

@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Menubox from '../components/Menubox';
+import Menuboxs from '../components/Menuboxs';
 import Productbox from '../components/Productbox';
+import Productboxs from '../components/Productboxs';
 import { mobile } from '../utils/responsive';
 
 const HomeSec = styled.section`
@@ -365,16 +367,7 @@ const Home = () => {
           Our <HeaderSpan>Menu</HeaderSpan>
         </Header>
         <GridBox>
-          <Menubox />
-          <Menubox />
-          <Menubox />
-          <Menubox />
-          <Menubox />
-          <Menubox />
-          <Menubox />
-          <Menubox />
-          <Menubox />
-          <Menubox />
+          <Menuboxs />
         </GridBox>
       </Sec>
       <Sec id='products'>
@@ -382,18 +375,14 @@ const Home = () => {
           Our <HeaderSpan>Products</HeaderSpan>
         </Header>
         <GridBox>
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
-          <Productbox />
+          <Productboxs />
         </GridBox>
       </Sec>
+      {/* <Sec id='review'>
+        <Header>
+          Our <HeaderSpan>Review</HeaderSpan>
+        </Header>
+      </Sec> */}
     </>
   );
 };

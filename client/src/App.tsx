@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import { socketConnect } from './redux/socketReducer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Contact from './pages/Contact';
+import Blogs from './pages/Blogs';
 
 // styled-components 전역 설정
 // theme을 전달하려면 react-app-env.d.ts에서 관련 타입을 정의해야함
@@ -71,6 +73,8 @@ function App() {
         <Routes>
           <Route path={'/'}>
             <Route index element={<Home />} />
+            <Route path={'contact'} element={<Contact />} />
+            <Route path={'blogs'} element={<Blogs />} />
           </Route>
         </Routes>
       </Container>

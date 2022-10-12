@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import navbarReducer from './navbarReducer';
 // import {
 //   persistStore,
 //   persistReducer,
@@ -22,6 +23,7 @@ import userReducer from './userReducer';
 const rootReducer = combineReducers({
   user: userReducer,
   socket: socketReducer,
+  navbar: navbarReducer,
 });
 
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
