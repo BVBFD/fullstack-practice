@@ -4,6 +4,7 @@ import Menubox from '../components/Menubox';
 import Menuboxs from '../components/Menuboxs';
 import Productbox from '../components/Productbox';
 import Productboxs from '../components/Productboxs';
+import Reviews from '../components/Reviews';
 import { mobile } from '../utils/responsive';
 
 const HomeSec = styled.section`
@@ -181,7 +182,7 @@ const GridBox = styled.div`
   gap: 2rem;
   margin-top: 2rem;
   ${mobile(1024, {
-    width: '60%',
+    width: '80%',
   })}
 
   .box {
@@ -378,11 +379,12 @@ const Home = () => {
           <Productboxs />
         </GridBox>
       </Sec>
-      {/* <Sec id='review'>
+      <Sec id='review' style={{ paddingBottom: '8rem' }}>
         <Header>
           Our <HeaderSpan>Review</HeaderSpan>
         </Header>
-      </Sec> */}
+        <Reviews />
+      </Sec>
     </>
   );
 };
