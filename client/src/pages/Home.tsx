@@ -323,6 +323,70 @@ const GridBox = styled.div`
   }
 `;
 
+const Row = styled.div`
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 30vh;
+  overflow-x: hidden;
+  animation: hueRotate 1s linear infinite;
+
+  i {
+    transform: scale(8);
+    margin-right: 10rem;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px gray;
+    opacity: 0.8;
+  }
+
+  i:hover {
+    transition: 0.2s;
+    opacity: 1;
+    color: #0f0;
+  }
+
+  .firstRow {
+    display: flex;
+    animation: move1 40s linear infinite;
+    animation-delay: -40s;
+  }
+
+  .secondRow {
+    display: flex;
+    animation: move2 40s linear infinite;
+    animation-delay: -20s;
+  }
+
+  @keyframes move1 {
+    0% {
+      transform: translateX(150%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes move2 {
+    0% {
+      transform: translateX(50%);
+    }
+    100% {
+      transform: translateX(-150%);
+    }
+  }
+
+  @keyframes hueRotate {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+`;
+
 const Home = () => {
   return (
     <>
@@ -384,6 +448,57 @@ const Home = () => {
           Our <HeaderSpan>Review</HeaderSpan>
         </Header>
         <Reviews />
+      </Sec>
+      <Sec id='logo'>
+        <Header>
+          We are <HeaderSpan>Supported By</HeaderSpan>
+        </Header>
+        <Row className='row'>
+          <div className='firstRow'>
+            <i className='fab fa-amazon'></i>
+            <i className='fab fa-angular'></i>
+            <i className='fas fa-archway'></i>
+            <i className='fab fa-apple'></i>
+            <i className='fas fa-audio-description'></i>
+            <i className='fas fa-atlas'></i>
+            <i className='fab fa-bluetooth'></i>
+            <i className='fas fa-briefcase'></i>
+            <i className='fab fa-cc-amazon-pay'></i>
+            <i className='fab fa-cc-amex'></i>
+            <i className='fab fa-cc-discover'></i>
+            <i className='fab fa-cc-jcb'></i>
+            <i className='fab fa-cc-mastercard'></i>
+            <i className='fab fa-cc-paypal'></i>
+            <i className='fab fa-cc-stripe'></i>
+            <i className='fab fa-cc-visa'></i>
+            <i className='fab fa-phoenix-framework'></i>
+            <i className='fab fa-studiovinari'></i>
+            <i className='fab fa-suse'></i>
+            <i className='fab fa-wizards-of-the-coast'></i>
+          </div>
+          <div className='secondRow'>
+            <i className='fab fa-amazon'></i>
+            <i className='fab fa-angular'></i>
+            <i className='fas fa-archway'></i>
+            <i className='fab fa-apple'></i>
+            <i className='fas fa-audio-description'></i>
+            <i className='fas fa-atlas'></i>
+            <i className='fab fa-bluetooth'></i>
+            <i className='fas fa-briefcase'></i>
+            <i className='fab fa-cc-amazon-pay'></i>
+            <i className='fab fa-cc-amex'></i>
+            <i className='fab fa-cc-discover'></i>
+            <i className='fab fa-cc-jcb'></i>
+            <i className='fab fa-cc-mastercard'></i>
+            <i className='fab fa-cc-paypal'></i>
+            <i className='fab fa-cc-stripe'></i>
+            <i className='fab fa-cc-visa'></i>
+            <i className='fab fa-phoenix-framework'></i>
+            <i className='fab fa-studiovinari'></i>
+            <i className='fab fa-suse'></i>
+            <i className='fab fa-wizards-of-the-coast'></i>
+          </div>
+        </Row>
       </Sec>
     </>
   );
