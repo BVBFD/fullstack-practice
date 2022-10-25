@@ -1,13 +1,14 @@
 import React from 'react';
 import BlogPart from './BlogPart';
 
-const BlogsPart = () => {
+type BlogsPartPropsType = {
+  currentPosts: Array<number>;
+};
+
+const BlogsPart = ({ currentPosts }: BlogsPartPropsType) => {
   return (
     <>
-      <BlogPart />
-      <BlogPart />
-      <BlogPart />
-      <BlogPart />
+      {currentPosts?.map((post) => (post == null ? <div></div> : <BlogPart />))}
     </>
   );
 };

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const BlogArticle = styled.article`
   border: 1px solid lightgray;
   cursor: pointer;
+  transform: scale(0.85);
 
   &:hover {
     img {

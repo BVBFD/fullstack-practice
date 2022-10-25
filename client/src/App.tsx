@@ -46,6 +46,8 @@ const GlobalStyle = createGlobalStyle`
     &::-webkit-scrollbar-track {
       background: ${(props) => props.theme.scrollbarTrack};
     }
+
+    background-color: black;
   }
 
   #root {
@@ -55,7 +57,6 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   width: 100vw;
-  background-color: black;
 `;
 
 function App() {

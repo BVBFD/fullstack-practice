@@ -2,6 +2,14 @@ import { CSSProp, css } from 'styled-components';
 
 export const mobile = (width: number | string, props: CSSProp) => {
   switch (width) {
+    // wide-screeen
+    case 1921:
+      return css`
+        @media screen and (min-width: 1921px) {
+          ${props}
+        }
+      `;
+
     // desktop
     case 1280:
       return css`
