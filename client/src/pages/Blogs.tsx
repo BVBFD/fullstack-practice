@@ -17,7 +17,7 @@ const BlogContainer = styled.div`
       marginTop: '8vh',
       transform: ' scale(1.4)',
     })}
-    button {
+    button, div {
       color: white;
     }
   }
@@ -56,7 +56,8 @@ const BlogWrapper = styled.section`
 
 const Blogs = () => {
   const [totalPosts, setTotalPosts] = useState<Array<number>>([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30,
   ]);
   const [currentPosts, setCurrentPosts] = useState<Array<number>>([1, 2, 3, 4]);
   const [totalPage, setTotalPage] = useState<number>(0);

@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Blogs from './pages/Blogs';
+import Cart from './pages/Cart';
 
 // styled-components 전역 설정
 // theme을 전달하려면 react-app-env.d.ts에서 관련 타입을 정의해야함
@@ -76,6 +77,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path={'contact'} element={<Contact />} />
             <Route path={'blogs'} element={<Blogs />} />
+            <Route path={'cart'} element={<Cart />} />
           </Route>
         </Routes>
       </Container>

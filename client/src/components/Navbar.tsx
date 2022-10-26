@@ -1,4 +1,4 @@
-import { Search, ShoppingBag } from '@mui/icons-material';
+import { ShoppingBag } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -183,8 +183,9 @@ const Navbar = () => {
         </Link>
       </MenuBox>
       <CartSearchBox>
-        <Search />
-        <ShoppingBag />
+        <Link to='/cart'>
+          <ShoppingBag />
+        </Link>
       </CartSearchBox>
     </Container>
   );
