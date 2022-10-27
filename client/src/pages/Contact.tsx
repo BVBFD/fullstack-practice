@@ -19,14 +19,14 @@ const Header = styled.header`
   text-align: center;
   height: 10%;
   padding-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   ${mobile(576, {
     fontSize: '3rem',
     paddingBottom: '0',
+    display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: '2rem',
   })}
 `;

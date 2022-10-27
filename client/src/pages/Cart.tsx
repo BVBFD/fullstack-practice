@@ -11,6 +11,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import CartProducts from '../components/CartProducts';
+import { mobile } from '../utils/responsive';
 
 const CartSec = styled.section`
   width: 100%;
@@ -30,6 +31,9 @@ const Header = styled.header`
   text-align: center;
   height: 5vh;
   padding-bottom: 1rem;
+  ${mobile(1024, {
+    marginBottom: '1rem',
+  })}
 `;
 
 const HeaderSpan = styled.span`
@@ -38,6 +42,9 @@ const HeaderSpan = styled.span`
 
 const BtnBox = styled.div`
   width: 100%;
+  ${mobile(1024, {
+    display: 'none',
+  })}
 
   button {
     position: relative;
@@ -66,6 +73,10 @@ const Article = styled.article`
   width: 100%;
   height: 55vh;
   display: flex;
+  ${mobile(1024, {
+    flexDirection: 'column',
+    height: '90vh',
+  })}
 `;
 
 const CartListBox = styled.div`
@@ -84,6 +95,7 @@ const CartListBox = styled.div`
 
   &::-webkit-scrollbar-track {
     background-color: black;
+    border: 1px solid white;
   }
 `;
 
@@ -97,6 +109,9 @@ const PayBox = styled.div`
   padding: 0 1rem;
   border: 1px solid white;
   color: white;
+  ${mobile(1024, {
+    margin: 0,
+  })}
 
   h1 {
     text-align: center;
@@ -143,11 +158,20 @@ const Footer = styled.footer`
   justify-content: space-between;
   align-items: center;
   color: white;
+  ${mobile(768, {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'center',
+  })}
 `;
 
 const FooterLeft = styled.div`
   width: 35%;
-
+  ${mobile(768, {
+    width: '100%',
+    border: '1px solid white',
+    padding: '1rem',
+  })}
   p {
     margin-bottom: 1rem;
   }
@@ -158,10 +182,24 @@ const FooterRight = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  ${mobile(768, {
+    width: '100%',
+    alignItems: 'center',
+    border: '1px solid white',
+  })}
 
   div {
     display: flex;
     margin-bottom: 0.6rem;
+    ${mobile(768, {
+      marginBottom: '1.2rem',
+    })}
+  }
+
+  svg {
+    ${mobile(768, {
+      marginRight: '0.4rem',
+    })}
   }
 `;
 
