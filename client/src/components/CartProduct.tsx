@@ -1,3 +1,4 @@
+import { CancelPresentation } from '@mui/icons-material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -5,6 +6,22 @@ const CartLi = styled.li`
   display: flex;
   border: 1px solid white;
   margin: 2rem 0;
+
+  svg {
+    color: white;
+    margin-top: 0.2rem;
+    margin-right: 0.2rem;
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+
+  svg:hover {
+    color: goldenrod;
+  }
+
+  svg:active {
+    transform: scale(1);
+  }
 `;
 
 const ImgBox = styled.div`
@@ -58,6 +75,7 @@ const CartProduct = () => {
           Price : <span>$200</span>
         </p>
       </Detail>
+      <CancelPresentation />
     </CartLi>
   );
 };
