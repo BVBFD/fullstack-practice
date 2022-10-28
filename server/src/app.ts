@@ -5,6 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import tweetsRouter from './router/tweets';
+import menuRouter from './router/menu';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -25,12 +26,12 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('tiny'));
 
-// mongoose
-//   .connect('process.env.MONGO_DB_URL', { dbName: 'dbname' })
-//   .then(() => console.log('MongoDB has been connected!'))
-//   .catch((error) => {
-//     throw error;
-//   });
+mongoose
+  .connect(process.env.MONGO_DB_URL!, { dbName: 'CoffeeShop' })
+  .then(() => console.log('MongoDB has been connected!'))
+  .catch((error) => {
+    throw error;
+  });
 
 // cookie secret key
 app.use(cookieParser(`process.env.SESS`));
@@ -70,35 +71,37 @@ app.use(cookieParser(`process.env.SESS`));
 //   }
 // );
 
-app.use(
-  session({
-    secret: `process.env.SESS`,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      maxAge: 3.6e6 * 34,
-      secure: true,
-    },
-    // store: MongoStore.create({
-    //   dbName: 'session',
-    //   mongoUrl: 'process.env.MONGO_DB_URL',
-    //   autoRemove: 'disabled',
-    // }),
-  })
-);
+// app.use(
+//   session({
+//     secret: `process.env.SESS`,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       httpOnly: true,
+//       maxAge: 3.6e6 * 34,
+//       secure: true,
+//     },
+//     // store: MongoStore.create({
+//     //   dbName: 'session',
+//     //   mongoUrl: 'process.env.MONGO_DB_URL',
+//     //   autoRemove: 'disabled',
+//     // }),
+//   })
+// );
 
-app.use('/api/tweets', tweetsRouter);
-app.get(
-  '/api/test',
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      res.status(200).json('test');
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+// app.use('/api/tweets', tweetsRouter);
+// app.get(
+//   '/api/test',
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//       res.status(200).json('test');
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
+
+app.use('/api/menu', menuRouter);
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const status = error.status || 500;
@@ -111,57 +114,57 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-const server = app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log('Hi Seong Eun Lee!');
   console.log('Started!');
 });
 
-const io = new Server(server, {
-  cors: corsOpt,
-});
+// const io = new Server(server, {
+//   cors: corsOpt,
+// });
 
-io.on('connection', (socket) => {
-  // socket은 각 클라이언트마다 배치된 것임.
-  // when connect
-  console.log(`A user connected! SocketID = ${socket.id}`);
-  socket.emit('getMessage', `SocketID = ${socket.id}`);
+// io.on('connection', (socket) => {
+//   // socket은 각 클라이언트마다 배치된 것임.
+//   // when connect
+//   console.log(`A user connected! SocketID = ${socket.id}`);
+//   socket.emit('getMessage', `SocketID = ${socket.id}`);
 
-  // join room
-  socket.on('joinRoom', (room) => {
-    socket.join(room);
-    io.emit('joinRoomNum', `Joined Room Num ${room}`);
-  });
+//   // join room
+//   socket.on('joinRoom', (room) => {
+//     socket.join(room);
+//     io.emit('joinRoomNum', `Joined Room Num ${room}`);
+//   });
 
-  // leave room
-  socket.on('leaveRoom', (room) => {
-    socket.leave(room);
-    io.emit('leaveRoomNum', `Leaved Room Num ${room}`);
-  });
+//   // leave room
+//   socket.on('leaveRoom', (room) => {
+//     socket.leave(room);
+//     io.emit('leaveRoomNum', `Leaved Room Num ${room}`);
+//   });
 
-  // send and get message
-  socket.on('sendMessage', (newMessage) => {
-    // 특정 클라이언트, 특정 room 에게만 메시지를 전송한다
-    // 아래는 특정 room 으로 전달
-    io.to(newMessage.room).emit('getMessage', newMessage);
+//   // send and get message
+//   socket.on('sendMessage', (newMessage) => {
+//     // 특정 클라이언트, 특정 room 에게만 메시지를 전송한다
+//     // 아래는 특정 room 으로 전달
+//     io.to(newMessage.room).emit('getMessage', newMessage);
 
-    // 접속된 모든 클라이언트에게 메시지를 전송한다
-    io.emit('getMessage', newMessage);
+//     // 접속된 모든 클라이언트에게 메시지를 전송한다
+//     io.emit('getMessage', newMessage);
 
-    // 메시지를 전송한 클라이언트에게만 메시지를 전송한다
-    socket.emit('getMessage', newMessage);
+//     // 메시지를 전송한 클라이언트에게만 메시지를 전송한다
+//     socket.emit('getMessage', newMessage);
 
-    // 메시지를 전송한 클라이언트를 제외한 모든 클라이언트에게 메시지를 전송한다
-    socket.broadcast.emit('getMessage', newMessage);
-  });
+//     // 메시지를 전송한 클라이언트를 제외한 모든 클라이언트에게 메시지를 전송한다
+//     socket.broadcast.emit('getMessage', newMessage);
+//   });
 
-  // delete message
-  socket.on('afterDelMsg', (afterDel) => {
-    io.to(afterDel.room).emit('getAfterDelMsg', afterDel.afterDelBol);
-  });
+//   // delete message
+//   socket.on('afterDelMsg', (afterDel) => {
+//     io.to(afterDel.room).emit('getAfterDelMsg', afterDel.afterDelBol);
+//   });
 
-  // edit message
-  socket.on('afterEditMsg', (afterEdit) => {
-    console.log(afterEdit);
-    io.to(afterEdit.room).emit('getAfterEditMsg', afterEdit.afterEditBol);
-  });
-});
+//   // edit message
+//   socket.on('afterEditMsg', (afterEdit) => {
+//     console.log(afterEdit);
+//     io.to(afterEdit.room).emit('getAfterEditMsg', afterEdit.afterEditBol);
+//   });
+// });
