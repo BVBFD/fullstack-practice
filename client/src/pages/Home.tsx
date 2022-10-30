@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Menubox from '../components/Menubox';
 import Menuboxs from '../components/Menuboxs';
-import Productbox from '../components/Productbox';
 import Productboxs from '../components/Productboxs';
 import Reviews from '../components/Reviews';
 import { mobile } from '../utils/responsive';
@@ -185,141 +183,14 @@ const GridBox = styled.div`
     width: '80%',
   })}
 
-  .box {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid white;
-    border-radius: 1rem;
-
-    /* products */
-    &.productsBox {
-      height: 95%;
-
-      .productLogoBox {
-        display: flex;
-        margin-bottom: 1.4rem;
-
-        .productLogo {
-          border: 1px solid white;
-          width: 2.8rem;
-          height: 2.8rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-
-          svg {
-            transform: scale(1.2);
-          }
-
-          &:hover {
-            color: goldenrod;
-            background-color: white;
-          }
-
-          &:active {
-            transform: scale(0.8);
-          }
-        }
-      }
-    }
-
-    /* menu */
-    img {
-      width: 100%;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-    }
-
-    /* products */
-    .productsImg {
-      width: 50%;
-      height: 45%;
-    }
-
-    /* menu */
-    .name {
-      font-size: 1.6rem;
-      font-weight: bolder;
-      margin: 1rem 0;
-    }
-
-    /* products */
-    .productsName {
-      font-size: 1.6rem;
-      font-weight: bolder;
-      margin: 1rem 0;
-    }
-
-    /* menu */
-    .priceBox {
-      margin-bottom: 1rem;
-
-      span:first-child {
-        font-size: 1.6rem;
-        margin-right: 0.8rem;
-      }
-
-      span:last-child {
-        font-size: 1.2rem;
-        text-decoration: line-through;
-      }
-    }
-
-    /* products */
-    .productsPriceBox {
-      margin-bottom: 1rem;
-
-      span:first-child {
-        font-size: 1.6rem;
-        margin-right: 0.8rem;
-      }
-
-      span:last-child {
-        font-size: 1.2rem;
-        text-decoration: line-through;
-      }
-    }
-
-    /* menu */
-    .menuBoxBtn {
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-      padding: 0.5rem 1.3rem;
-      color: white;
-      background-color: goldenrod;
-      cursor: pointer;
-
-      &:hover {
-        color: goldenrod;
-        background-color: white;
-      }
-
-      &:active {
-        transform: scale(0.8);
-      }
-    }
-
-    /* products */
-    .productsPriceBoxBtn {
-      margin-top: 0.4rem;
-      padding: 0.5rem 1.3rem;
-      color: white;
-      background-color: goldenrod;
-      cursor: pointer;
-
-      &:hover {
-        color: goldenrod;
-        background-color: white;
-      }
-
-      &:active {
-        transform: scale(0.8);
-      }
-    }
+  &.productBoxs {
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    ${mobile(1280, {
+      gridTemplateColumns: 'repeat(auto-fit, minmax(20rem, 1fr))',
+    })}
+    ${mobile(960, {
+      gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, 1fr))',
+    })}
   }
 `;
 
@@ -439,7 +310,7 @@ const Home = () => {
         <Header>
           Our <HeaderSpan>Products</HeaderSpan>
         </Header>
-        <GridBox>
+        <GridBox className='productBoxs'>
           <Productboxs />
         </GridBox>
       </Sec>
