@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import tweetsRouter from './router/tweets';
 import menuRouter from './router/menu';
+import productRouter from './router/product';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -102,6 +103,7 @@ app.use(cookieParser(`process.env.SESS`));
 // );
 
 app.use('/api/menu', menuRouter);
+app.use('/api/product', productRouter);
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const status = error.status || 500;
