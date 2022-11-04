@@ -47,7 +47,7 @@ router.put(
       switch (req.query.cal) {
         case 'plus':
           incQuan = await Cart.findByIdAndUpdate(
-            req.params.id,
+            { _id: req.params.id },
             {
               $inc: { quantity: 1 },
             },
@@ -78,9 +78,10 @@ router.delete(
   '/:id',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const deleted = await Cart.findByIdAndDelete(req.params.id);
+      const deleted = await Cart.findByIdAndRemove(req.params.id);
+
       if (deleted == null) {
-        res.status(404).json('this is nto existed!!');
+        res.status(404).json('this is not existed!!');
       } else {
         res.status(204).json(`Cart Product has been deleted...!!`);
       }
