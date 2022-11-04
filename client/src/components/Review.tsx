@@ -29,7 +29,7 @@ const ReviewBox = styled.div`
     .detailImgBox {
       width: 5rem;
       height: 5rem;
-      margin: 1.6rem 0;
+      margin: 1.4rem 0;
 
       img {
         width: 100%;
@@ -37,6 +37,10 @@ const ReviewBox = styled.div`
         object-fit: cover;
         border-radius: 50%;
       }
+    }
+
+    span {
+      margin-bottom: 1rem;
     }
   }
 `;
@@ -55,6 +59,7 @@ const Review = () => {
         <div className='detailImgBox'>
           <img src='images/pic-1.png' alt='' />
         </div>
+        <span>Black Rose</span>
         <div className='starBox'>
           <Star />
           <Star />
