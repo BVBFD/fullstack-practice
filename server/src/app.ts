@@ -1,19 +1,21 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import express, { NextFunction, Request, Response } from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import helmet from 'helmet';
-import tweetsRouter from './router/tweets';
-import menuRouter from './router/menu';
-import productRouter from './router/product';
-import cartRouter from './router/cart';
-import reviewRouter from './router/review';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { Server } from 'socket.io';
+import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+
+import tweetsRouter from './router/tweets';
+import menuRouter from './router/menu';
+import productRouter from './router/product';
+import cartRouter from './router/cart';
+import reviewRouter from './router/review';
+import blogRouter from './router/blog';
 
 const app = express();
 console.log(process.env.TEST);
@@ -108,6 +110,7 @@ app.use('/api/menu', menuRouter);
 app.use('/api/product', productRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/review', reviewRouter);
+app.use('/api/blog', blogRouter);
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const status = error.status || 500;
