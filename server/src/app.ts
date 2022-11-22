@@ -1,27 +1,23 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
-import express, { NextFunction, Request, Response } from 'express';
-import mongoose from 'mongoose';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
-import MongoStore from 'connect-mongo';
-import { Server } from 'socket.io';
-import cors from 'cors';
-import morgan from 'morgan';
-import helmet from 'helmet';
+import express, { NextFunction, Request, Response } from "express";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import MongoStore from "connect-mongo";
+import cors from "cors";
+import morgan from "morgan";
+import helmet from "helmet";
 
-import tweetsRouter from './router/tweets';
-import menuRouter from './router/menu';
-import productRouter from './router/product';
-import cartRouter from './router/cart';
-import reviewRouter from './router/review';
-import blogRouter from './router/blog';
+import menuRouter from "./router/menu";
+import productRouter from "./router/product";
+import cartRouter from "./router/cart";
+import reviewRouter from "./router/review";
+import blogRouter from "./router/blog";
 
 const app = express();
-console.log(process.env.TEST);
 
 const corsOpt = {
-  origin: 'http://127.0.0.1:5173',
+  origin: "http://127.0.0.1:5173",
   optionsSuccessStatus: 200,
   credentials: true,
 };
@@ -29,11 +25,11 @@ const corsOpt = {
 app.use(cors(corsOpt));
 app.use(express.json());
 app.use(helmet());
-app.use(morgan('tiny'));
+app.use(morgan("tiny"));
 
 mongoose
-  .connect(process.env.MONGO_DB_URL!, { dbName: 'CoffeeShop' })
-  .then(() => console.log('MongoDB has been connected!'))
+  .connect(process.env.MONGO_DB_URL!, { dbName: "CoffeeShop" })
+  .then(() => console.log("MongoDB has been connected!"))
   .catch((error) => {
     throw error;
   });
@@ -106,15 +102,15 @@ app.use(cookieParser(`process.env.SESS`));
 //   }
 // );
 
-app.use('/api/menu', menuRouter);
-app.use('/api/product', productRouter);
-app.use('/api/cart', cartRouter);
-app.use('/api/review', reviewRouter);
-app.use('/api/blog', blogRouter);
+app.use("/api/menu", menuRouter);
+app.use("/api/product", productRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/review", reviewRouter);
+app.use("/api/blog", blogRouter);
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const status = error.status || 500;
-  const message = error.message || 'Something went wrong!';
+  const message = error.message || "Something went wrong!";
 
   return res.status(status).json({
     success: false,
@@ -124,8 +120,8 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.listen(process.env.PORT || 8080, () => {
-  console.log('Hi Seong Eun Lee!');
-  console.log('Started!');
+  console.log("Hi Seong Eun Lee!");
+  console.log("Started!");
 });
 
 // const io = new Server(server, {

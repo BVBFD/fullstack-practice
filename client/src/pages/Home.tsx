@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import Menuboxs from '../components/Menuboxs';
-import Productboxs from '../components/Productboxs';
-import Reviews from '../components/Reviews';
-import { mobile } from '../utils/responsive';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Menuboxs from "../components/Menuboxs";
+import Productboxs from "../components/Productboxs";
+import Reviews from "../components/Reviews";
+import { mobile } from "../utils/responsive";
 
 const HomeSec = styled.section`
   width: 100%;
@@ -12,7 +12,7 @@ const HomeSec = styled.section`
 const Wrapper = styled.div`
   position: relative;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -37,16 +37,16 @@ const TextBox = styled.div`
   color: white;
   z-index: 999;
   ${mobile(1280, {
-    textAlign: 'center',
-    left: '0',
+    textAlign: "center",
+    left: "0",
   })}
   ${mobile(960, {
-    top: '35%',
-    left: '0',
+    top: "35%",
+    left: "0",
   })}
   ${mobile(768, {
-    top: '25%',
-    left: '0',
+    top: "25%",
+    left: "0",
   })}
 `;
 
@@ -100,7 +100,7 @@ const ExplainBox = styled.div`
   margin: 3rem 6rem;
 
   ${mobile(1024, {
-    flexDirection: 'column',
+    flexDirection: "column",
   })}
 `;
 
@@ -116,7 +116,7 @@ const ImgBox = styled.div`
   }
 
   ${mobile(1024, {
-    width: '100%',
+    width: "100%",
   })}
 `;
 
@@ -129,7 +129,7 @@ const CommBox = styled.div`
   justify-content: center;
 
   ${mobile(1024, {
-    width: '100%',
+    width: "100%",
   })}
 
   span,
@@ -180,16 +180,16 @@ const GridBox = styled.div`
   gap: 2rem;
   margin-top: 2rem;
   ${mobile(1024, {
-    width: '80%',
+    width: "80%",
   })}
 
   &.productBoxs {
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     ${mobile(1280, {
-      gridTemplateColumns: 'repeat(auto-fit, minmax(20rem, 1fr))',
+      gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))",
     })}
     ${mobile(960, {
-      gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, 1fr))',
+      gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))",
     })}
   }
 `;
@@ -259,11 +259,17 @@ const Row = styled.div`
 `;
 
 const Home = () => {
+  const [test, setTest] = useState<string>();
+
+  useEffect(() => {
+    setTest("test");
+  }, []);
+
   return (
     <>
-      <HomeSec id='home'>
+      <HomeSec id="home">
         <Wrapper>
-          <Img src='../images/home-img.jpeg' />
+          <Img src="../images/home-img.jpeg" />
           <TextBox>
             <TextSpan>Best Coffee</TextSpan>
             <TextSpan>Served For You</TextSpan>
@@ -272,13 +278,13 @@ const Home = () => {
           </TextBox>
         </Wrapper>
       </HomeSec>
-      <Sec id='about'>
+      <Sec id="about">
         <Header>
           About <HeaderSpan>Us</HeaderSpan>
         </Header>
         <ExplainBox>
           <ImgBox>
-            <Img src='../images/about-img.jpeg' />
+            <Img src="../images/about-img.jpeg" />
           </ImgBox>
           <CommBox>
             <span>What is the special things in our coffee</span>
@@ -298,7 +304,7 @@ const Home = () => {
           </CommBox>
         </ExplainBox>
       </Sec>
-      <Sec id='menu'>
+      <Sec id="menu">
         <Header>
           Our <HeaderSpan>Menu</HeaderSpan>
         </Header>
@@ -306,68 +312,68 @@ const Home = () => {
           <Menuboxs />
         </GridBox>
       </Sec>
-      <Sec id='products'>
+      <Sec id="products">
         <Header>
           Our <HeaderSpan>Products</HeaderSpan>
         </Header>
-        <GridBox className='productBoxs'>
+        <GridBox className="productBoxs">
           <Productboxs />
         </GridBox>
       </Sec>
-      <Sec id='review' style={{ paddingBottom: '8rem' }}>
+      <Sec id="review" style={{ paddingBottom: "8rem" }}>
         <Header>
           Our <HeaderSpan>Review</HeaderSpan>
         </Header>
         <Reviews />
       </Sec>
-      <Sec id='logo'>
+      <Sec id="logo">
         <Header>
           We are <HeaderSpan>Supported By</HeaderSpan>
         </Header>
-        <Row className='row'>
-          <div className='firstRow'>
-            <i className='fab fa-amazon'></i>
-            <i className='fab fa-angular'></i>
-            <i className='fas fa-archway'></i>
-            <i className='fab fa-apple'></i>
-            <i className='fas fa-audio-description'></i>
-            <i className='fas fa-atlas'></i>
-            <i className='fab fa-bluetooth'></i>
-            <i className='fas fa-briefcase'></i>
-            <i className='fab fa-cc-amazon-pay'></i>
-            <i className='fab fa-cc-amex'></i>
-            <i className='fab fa-cc-discover'></i>
-            <i className='fab fa-cc-jcb'></i>
-            <i className='fab fa-cc-mastercard'></i>
-            <i className='fab fa-cc-paypal'></i>
-            <i className='fab fa-cc-stripe'></i>
-            <i className='fab fa-cc-visa'></i>
-            <i className='fab fa-phoenix-framework'></i>
-            <i className='fab fa-studiovinari'></i>
-            <i className='fab fa-suse'></i>
-            <i className='fab fa-wizards-of-the-coast'></i>
+        <Row className="row">
+          <div className="firstRow">
+            <i className="fab fa-amazon"></i>
+            <i className="fab fa-angular"></i>
+            <i className="fas fa-archway"></i>
+            <i className="fab fa-apple"></i>
+            <i className="fas fa-audio-description"></i>
+            <i className="fas fa-atlas"></i>
+            <i className="fab fa-bluetooth"></i>
+            <i className="fas fa-briefcase"></i>
+            <i className="fab fa-cc-amazon-pay"></i>
+            <i className="fab fa-cc-amex"></i>
+            <i className="fab fa-cc-discover"></i>
+            <i className="fab fa-cc-jcb"></i>
+            <i className="fab fa-cc-mastercard"></i>
+            <i className="fab fa-cc-paypal"></i>
+            <i className="fab fa-cc-stripe"></i>
+            <i className="fab fa-cc-visa"></i>
+            <i className="fab fa-phoenix-framework"></i>
+            <i className="fab fa-studiovinari"></i>
+            <i className="fab fa-suse"></i>
+            <i className="fab fa-wizards-of-the-coast"></i>
           </div>
-          <div className='secondRow'>
-            <i className='fab fa-amazon'></i>
-            <i className='fab fa-angular'></i>
-            <i className='fas fa-archway'></i>
-            <i className='fab fa-apple'></i>
-            <i className='fas fa-audio-description'></i>
-            <i className='fas fa-atlas'></i>
-            <i className='fab fa-bluetooth'></i>
-            <i className='fas fa-briefcase'></i>
-            <i className='fab fa-cc-amazon-pay'></i>
-            <i className='fab fa-cc-amex'></i>
-            <i className='fab fa-cc-discover'></i>
-            <i className='fab fa-cc-jcb'></i>
-            <i className='fab fa-cc-mastercard'></i>
-            <i className='fab fa-cc-paypal'></i>
-            <i className='fab fa-cc-stripe'></i>
-            <i className='fab fa-cc-visa'></i>
-            <i className='fab fa-phoenix-framework'></i>
-            <i className='fab fa-studiovinari'></i>
-            <i className='fab fa-suse'></i>
-            <i className='fab fa-wizards-of-the-coast'></i>
+          <div className="secondRow">
+            <i className="fab fa-amazon"></i>
+            <i className="fab fa-angular"></i>
+            <i className="fas fa-archway"></i>
+            <i className="fab fa-apple"></i>
+            <i className="fas fa-audio-description"></i>
+            <i className="fas fa-atlas"></i>
+            <i className="fab fa-bluetooth"></i>
+            <i className="fas fa-briefcase"></i>
+            <i className="fab fa-cc-amazon-pay"></i>
+            <i className="fab fa-cc-amex"></i>
+            <i className="fab fa-cc-discover"></i>
+            <i className="fab fa-cc-jcb"></i>
+            <i className="fab fa-cc-mastercard"></i>
+            <i className="fab fa-cc-paypal"></i>
+            <i className="fab fa-cc-stripe"></i>
+            <i className="fab fa-cc-visa"></i>
+            <i className="fab fa-phoenix-framework"></i>
+            <i className="fab fa-studiovinari"></i>
+            <i className="fab fa-suse"></i>
+            <i className="fab fa-wizards-of-the-coast"></i>
           </div>
         </Row>
       </Sec>
