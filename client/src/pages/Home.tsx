@@ -259,12 +259,6 @@ const Row = styled.div`
 `;
 
 const Home = () => {
-  const [test, setTest] = useState<string>();
-
-  useEffect(() => {
-    setTest("test");
-  }, []);
-
   return (
     <>
       <HomeSec id="home">

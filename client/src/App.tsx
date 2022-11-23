@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { darkTheme, lightTheme } from './utils/Theme';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
-import { mobile } from './utils/responsive';
-import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from './redux/store';
-import Socket from 'socket.io-client';
-import { useDispatch } from 'react-redux';
-import { socketConnect } from './redux/socketReducer';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Contact from './pages/Contact';
-import Blogs from './pages/Blogs';
-import Cart from './pages/Cart';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { darkTheme, lightTheme } from "./utils/Theme";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import { mobile } from "./utils/responsive";
+import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import Socket from "socket.io-client";
+import { useDispatch } from "react-redux";
+import { socketConnect } from "./redux/socketReducer";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import Blogs from "./pages/Blogs";
+import Cart from "./pages/Cart";
+import Login from "./pages/Login";
 
 // styled-components 전역 설정
 // theme을 전달하려면 react-app-env.d.ts에서 관련 타입을 정의해야함
@@ -73,11 +74,12 @@ function App() {
         <GlobalStyle theme={darkMode ? darkTheme : lightTheme} />
         <Navbar />
         <Routes>
-          <Route path={'/'}>
+          <Route path={"/"}>
             <Route index element={<Home />} />
-            <Route path={'contact'} element={<Contact />} />
-            <Route path={'blogs'} element={<Blogs />} />
-            <Route path={'cart'} element={<Cart />} />
+            <Route path={"contact"} element={<Contact />} />
+            <Route path={"blogs"} element={<Blogs />} />
+            <Route path={"cart"} element={<Cart />} />
+            <Route path={"login"} element={<Login />} />
           </Route>
         </Routes>
       </Container>
