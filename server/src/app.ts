@@ -13,6 +13,7 @@ import productRouter from "./router/product";
 import cartRouter from "./router/cart";
 import reviewRouter from "./router/review";
 import blogRouter from "./router/blog";
+import authRouter from "./router/auth";
 
 const app = express();
 
@@ -107,6 +108,7 @@ app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/blog", blogRouter);
+app.use("/api/auth", authRouter);
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const status = error.status || 500;

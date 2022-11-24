@@ -80,6 +80,7 @@ const Login = () => {
   const loginBtn = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
+
   return (
     <LoginSec>
       <video src="/videos/Coffee-low.mp4" autoPlay muted loop></video>
