@@ -18,7 +18,7 @@ import authRouter from "./router/auth";
 const app = express();
 
 const corsOpt = {
-  origin: "http://127.0.0.1:5173",
+  origin: "http://localhost:5173",
   optionsSuccessStatus: 200,
   credentials: true,
 };

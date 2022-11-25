@@ -1,10 +1,11 @@
-import { ShoppingBag, Login } from "@mui/icons-material";
+import { ShoppingBag, Login, Logout } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { setNavbar } from "../redux/navbarReducer";
 import { RootState } from "../redux/store";
+import { logOut } from "../redux/userReducer";
 import { mobile } from "../utils/responsive";
 
 const Container = styled.div`
@@ -128,10 +129,10 @@ const CartSearchBox = styled.div`
 
 const Navbar = () => {
   const navbar = useSelector((state: RootState) => state.navbar.navbar);
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
 
-  console.log(user);
+  const navigate = useNavigate();
 
   const handleNavbarClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -139,9 +140,11 @@ const Navbar = () => {
     dispatch(setNavbar(e.currentTarget.innerText.toLowerCase()));
   };
 
-  useEffect(() => {
-    console.log(navbar);
+  const onLogout = () => {
+    dispatch(logOut());
+  };
 
+  useEffect(() => {
     const moveToHome = `${window.location.protocol}//${window.location.host}/#`;
     const moveToElse = `${window.location.protocol}//${window.location.host}/#${navbar}`;
     if (navbar === "home" || navbar == null) {
@@ -154,6 +157,8 @@ const Navbar = () => {
       dispatch(setNavbar("/"));
     };
   }, [navbar]);
+
+  console.log(user);
 
   return (
     <Container>
@@ -186,12 +191,18 @@ const Navbar = () => {
         </Link>
       </MenuBox>
       <CartSearchBox>
-        <Link to="/login">
-          <Login />
-        </Link>
-        <Link to="/cart">
-          <ShoppingBag />
-        </Link>
+        {user === null ? (
+          <Link to="/login">
+            <Login />
+          </Link>
+        ) : (
+          <>
+            <Link to="/cart">
+              <ShoppingBag />
+            </Link>
+            <Logout onClick={onLogout} />
+          </>
+        )}
       </CartSearchBox>
     </Container>
   );

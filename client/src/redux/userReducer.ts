@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 type User = {
   _id: string;
@@ -21,15 +21,17 @@ const initialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     loginStart: (state) => {
       state.isFetching = true;
+      state.error = false;
     },
     loginSuccess: (state, action) => {
       state.isFetching = false;
       state.user = action.payload;
+      state.error = false;
     },
     loginFailure: (state) => {
       state.isFetching = false;

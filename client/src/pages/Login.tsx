@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { axiosPublicReq } from "../axiosReqMethods";
+import { RootState } from "../redux/store";
+import { loginFailure, loginStart, loginSuccess } from "../redux/userReducer";
 
 const LoginSec = styled.section`
   width: 100%;
@@ -49,7 +55,7 @@ const LoginForm = styled.form`
   margin-top: 15%;
 `;
 
-const LoginInput = styled.input`
+const LoginPwdInput = styled.input`
   width: 130%;
   height: 5vh;
   margin: 5% 0;
@@ -77,8 +83,27 @@ const LoginBtn = styled.button`
 `;
 
 const Login = () => {
-  const loginBtn = (e: React.FormEvent<HTMLButtonElement>) => {
+  const [email, setEmail] = useState<string>();
+  const [pwd, setPwd] = useState<string>();
+
+  const navigate = useNavigate();
+
+  const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+
+  const loginBtn = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    dispatch(loginStart());
+    try {
+      const res = await axiosPublicReq.post("/auth/login", {
+        email,
+        password: pwd,
+      });
+      dispatch(loginSuccess(res.data.data));
+      navigate("/");
+    } catch (error) {
+      dispatch(loginFailure());
+    }
   };
 
   return (
@@ -89,8 +114,15 @@ const Login = () => {
           Log <span>In</span>
         </Header>
         <LoginForm>
-          <LoginInput placeholder="Input your ID" />
-          <LoginInput placeholder="Input your Password" />
+          <LoginPwdInput
+            placeholder="Input your Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <LoginPwdInput
+            placeholder="Input your Password"
+            onChange={(e) => setPwd(e.target.value)}
+            type="password"
+          />
           <LoginBtn onClick={loginBtn}>Log-In</LoginBtn>
         </LoginForm>
       </Wrapper>
