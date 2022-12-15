@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BlogType } from "../pages/Blogs";
+import { BlogType } from "../pages/Home";
 
 const BlogArticle = styled.article`
   border: 1px solid lightgray;

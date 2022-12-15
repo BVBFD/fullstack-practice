@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import navbarReducer from "./navbarReducer";
 import {
   persistStore,
   persistReducer,
@@ -11,7 +10,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import socketReducer from "./socketReducer";
 import userReducer from "./userReducer";
 
 const persistConfig = {
@@ -22,8 +20,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
-  socket: socketReducer,
-  navbar: navbarReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

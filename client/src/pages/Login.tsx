@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { axiosPublicReq } from "../axiosReqMethods";
-import { setNavbar } from "../redux/navbarReducer";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userReducer";
 
 const LoginSec = styled.section`
@@ -56,6 +55,7 @@ const LoginForm = styled.form`
 
 const LoginPwdInput = styled.input`
   width: 130%;
+  padding: 0 1rem;
   height: 5vh;
   margin: 5% 0;
 `;
@@ -88,30 +88,20 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const loginBtn = useCallback(
-    async (e: React.FormEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      dispatch(loginStart());
-      try {
-        const res = await axiosPublicReq.post("/auth/login", {
-          email,
-          password: pwd,
-        });
-        dispatch(loginSuccess(res.data.data));
-        navigate("/");
-      } catch (error) {
-        dispatch(loginFailure());
-      }
-    },
-    []
-  );
-
-  useEffect(() => {
-    dispatch(setNavbar("login"));
-    return () => {
-      dispatch(setNavbar("#"));
-    };
-  }, []);
+  const loginBtn = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    dispatch(loginStart());
+    try {
+      const res = await axiosPublicReq.post("/auth/login", {
+        email: `${email}`,
+        password: `${pwd}`,
+      });
+      dispatch(loginSuccess(res.data.data));
+      navigate("/");
+    } catch (error) {
+      dispatch(loginFailure());
+    }
+  };
 
   return (
     <LoginSec>

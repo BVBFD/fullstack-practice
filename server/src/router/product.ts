@@ -1,9 +1,9 @@
-import express, { Request, Response, NextFunction } from 'express';
-import Product from '../models/Product';
+import express, { Request, Response, NextFunction } from "express";
+import Product from "../models/Product";
 
 const router = express.Router();
 
-router.post('/', async (req: Request, res: Response, next: NextFunction) => {
+router.post("/", async (req: Request, res: Response, next: NextFunction) => {
   const newProduct = new Product(req.body);
   try {
     const savedProduct = await newProduct.save();
@@ -13,7 +13,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const products = await Product.find();
     res.status(200).json(products);
@@ -22,7 +22,19 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.get(
+  "/:productId",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const product = await Product.findById(req.params.productId);
+      res.status(200).json(product);
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  }
+);
+
+router.put("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -30,7 +42,7 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
       { new: true }
     );
     if (updatedProduct == null) {
-      res.status(401).json('this is not existed!!');
+      res.status(401).json("this is not existed!!");
     } else {
       res.status(201).json(updatedProduct);
     }
@@ -40,12 +52,12 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.delete(
-  '/:id',
+  "/:id",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const deleted = await Product.findByIdAndDelete(req.params.id);
       if (deleted == null) {
-        res.status(404).json('this is not existed!!');
+        res.status(404).json("this is not existed!!");
       } else {
         res.status(204).json(`Product has been deleted...!!`);
       }

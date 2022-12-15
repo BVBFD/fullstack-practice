@@ -1,19 +1,17 @@
-import React from 'react';
-import Menubox from './Menubox';
+import React from "react";
+import { MenuType } from "../pages/Home";
+import Menubox from "./Menubox";
 
-const Menuboxs = () => {
+interface MenuboxsPropsType {
+  menu?: Array<MenuType>;
+}
+
+const Menuboxs = ({ menu }: MenuboxsPropsType) => {
   return (
     <>
-      <Menubox />
-      <Menubox />
-      <Menubox />
-      <Menubox />
-      <Menubox />
-      <Menubox />
-      <Menubox />
-      <Menubox />
-      <Menubox />
-      <Menubox />
+      {menu?.map((m) => (
+        <Menubox key={m._id} m={m} />
+      ))}
     </>
   );
 };

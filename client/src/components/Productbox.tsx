@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 import {
   ShoppingCart,
   Favorite,
   Visibility,
   Star,
   StarOutline,
-} from '@mui/icons-material';
-import styled from 'styled-components';
+} from "@mui/icons-material";
+import styled from "styled-components";
+import { ProductType } from "../pages/Home";
 
 const Box = styled.div`
   color: white;
@@ -119,91 +120,121 @@ const Box = styled.div`
   }
 `;
 
-const Productbox = () => {
+interface ProductboxPropsType {
+  p: ProductType;
+}
+
+const Productbox = ({ p }: ProductboxPropsType) => {
+  const makeArrayByNum = (n: 0 | 1 | 2 | 3 | 4 | 5) => {
+    try {
+      if (n > 5 || n < 0) {
+        throw new Error("Not Proper Number here!!");
+      } else {
+        let newArray = [false, false, false, false, false];
+        for (let i = 0; i < n; i++) {
+          newArray[i] = true;
+        }
+        return newArray;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <Box className='productsBox'>
-      <div className='productLogoBox'>
-        <div className='productLogo'>
+    <Box className="productsBox">
+      <div className="productLogoBox">
+        <div className="productLogo">
           <ShoppingCart />
         </div>
-        <div className='productLogo'>
+        <div className="productLogo">
           <Favorite />
         </div>
-        <div className='productLogo'>
+        <div className="productLogo">
           <Visibility />
         </div>
       </div>
-      <img className='productsImg' src='../images/product-2.png' alt='' />
-      <span className='productsName'>Americano</span>
-      <table className='tg'>
+      <img className="productsImg" src="../images/product-2.png" alt="" />
+      <span className="productsName">{p.title}</span>
+      <table className="tg">
         <tbody>
           <tr>
-            <td className='tg-td-data' style={{ color: 'lightcoral' }}>
+            <td className="tg-td-data" style={{ color: "lightcoral" }}>
               Flavor
             </td>
-            <td className='tg-td-data'>
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <StarOutline />
+            <td className="tg-td-data">
+              {makeArrayByNum(p.flavor)?.map((b) => {
+                if (!b) {
+                  return <StarOutline />;
+                } else {
+                  return <Star />;
+                }
+              })}
             </td>
           </tr>
           <tr>
-            <td className='tg-td-data' style={{ color: 'lightblue' }}>
+            <td className="tg-td-data" style={{ color: "lightblue" }}>
               Acidity
             </td>
-            <td className='tg-td-data'>
-              <Star />
-              <StarOutline />
-              <StarOutline />
-              <StarOutline />
-              <StarOutline />
+            <td className="tg-td-data">
+              {makeArrayByNum(p.acidity)?.map((b) => {
+                if (!b) {
+                  return <StarOutline />;
+                } else {
+                  return <Star />;
+                }
+              })}
             </td>
           </tr>
           <tr>
-            <td className='tg-td-data' style={{ color: 'lightGreen' }}>
+            <td className="tg-td-data" style={{ color: "lightGreen" }}>
               Body
             </td>
-            <td className='tg-td-data'>
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
+            <td className="tg-td-data">
+              {makeArrayByNum(p.body)?.map((b) => {
+                if (!b) {
+                  return <StarOutline />;
+                } else {
+                  return <Star />;
+                }
+              })}
             </td>
           </tr>
           <tr>
-            <td className='tg-td-data' style={{ color: 'orange' }}>
+            <td className="tg-td-data" style={{ color: "orange" }}>
               Sweetness
             </td>
-            <td className='tg-td-data'>
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <StarOutline />
+            <td className="tg-td-data">
+              {makeArrayByNum(p.sweetness)?.map((b) => {
+                if (!b) {
+                  return <StarOutline />;
+                } else {
+                  return <Star />;
+                }
+              })}
             </td>
           </tr>
           <tr>
-            <td className='tg-td-data' style={{ color: 'yellow' }}>
+            <td className="tg-td-data" style={{ color: "yellow" }}>
               Aftertaste
             </td>
-            <td className='tg-td-data'>
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
+            <td className="tg-td-data">
+              {makeArrayByNum(p.aftertaste)?.map((b) => {
+                if (!b) {
+                  return <StarOutline />;
+                } else {
+                  return <Star />;
+                }
+              })}
             </td>
           </tr>
         </tbody>
       </table>
-      <div className='productsPriceBox'>
-        <span>$4.99</span>
-        <span>5.99</span>
+      <div className="productsPriceBox">
+        <span>${p.price - p.discount}</span>
+        <span>{p.price}</span>
       </div>
-      <button className='productsPriceBoxBtn'>Add To Cart</button>
+      <button className="productsPriceBoxBtn">Add To Cart</button>
     </Box>
   );
 };

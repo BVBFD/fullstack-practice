@@ -6,12 +6,13 @@ import {
   Pinterest,
   Room,
   Twitter,
-} from '@mui/icons-material';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import CartProducts from '../components/CartProducts';
-import { mobile } from '../utils/responsive';
+} from "@mui/icons-material";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { axiosPublicReq } from "../axiosReqMethods";
+import CartProducts, { CartType } from "../components/CartProducts";
+import { mobile } from "../utils/responsive";
 
 const CartSec = styled.section`
   width: 100%;
@@ -32,7 +33,7 @@ const Header = styled.header`
   height: 5vh;
   padding-bottom: 1rem;
   ${mobile(1024, {
-    marginBottom: '1rem',
+    marginBottom: "1rem",
   })}
 `;
 
@@ -43,7 +44,7 @@ const HeaderSpan = styled.span`
 const BtnBox = styled.div`
   width: 100%;
   ${mobile(1024, {
-    display: 'none',
+    display: "none",
   })}
 
   button {
@@ -74,8 +75,8 @@ const Article = styled.article`
   height: 55vh;
   display: flex;
   ${mobile(1024, {
-    flexDirection: 'column',
-    height: '90vh',
+    flexDirection: "column",
+    height: "90vh",
   })}
 `;
 
@@ -159,18 +160,18 @@ const Footer = styled.footer`
   align-items: center;
   color: white;
   ${mobile(768, {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    textAlign: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
+    textAlign: "center",
   })}
 `;
 
 const FooterLeft = styled.div`
   width: 35%;
   ${mobile(768, {
-    width: '100%',
-    border: '1px solid white',
-    padding: '1rem',
+    width: "100%",
+    border: "1px solid white",
+    padding: "1rem",
   })}
   p {
     margin-bottom: 1rem;
@@ -183,58 +184,90 @@ const FooterRight = styled.div`
   flex-direction: column;
   align-items: flex-end;
   ${mobile(768, {
-    width: '100%',
-    alignItems: 'center',
-    border: '1px solid white',
+    width: "100%",
+    alignItems: "center",
+    border: "1px solid white",
   })}
 
   div {
     display: flex;
     margin-bottom: 0.6rem;
     ${mobile(768, {
-      marginBottom: '1.2rem',
+      marginBottom: "1.2rem",
     })}
   }
 
   svg {
     ${mobile(768, {
-      marginRight: '0.4rem',
+      marginRight: "0.4rem",
     })}
   }
 `;
 
 const Cart = () => {
+  const [cart, setCart] = useState<Array<CartType>>();
+  const [sum, setSum] = useState<number>();
+  const [shipping, setShipping] = useState<number>();
+  const [discount, setDiscount] = useState<number>();
+
+  useEffect(() => {
+    const getCart = async () => {
+      try {
+        const res = await axiosPublicReq("/cart");
+        setCart(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCart();
+  }, []);
+
+  useEffect(() => {
+    let sum = 0;
+    cart?.forEach((c) => {
+      console.log(c);
+      sum += c.price;
+    });
+    setSum(sum);
+  }, [cart]);
+
+  useEffect(() => {
+    setShipping(6);
+    setDiscount(6);
+  }, []);
+
   return (
     <CartSec>
       <Header>
         Your <HeaderSpan>Cart</HeaderSpan>
       </Header>
       <BtnBox>
-        <Link to='/'>
+        <Link to="/">
           <button>continue shopping</button>
         </Link>
       </BtnBox>
       <Article>
         <CartListBox>
-          <CartProducts />
+          <CartProducts cart={cart} />
         </CartListBox>
         <PayBox>
           <h1>Order</h1>
           <div>
             <p>SubTotal</p>
-            <span>$800</span>
+            <span>${sum}</span>
           </div>
           <div>
             <p>Estimated Shipping</p>
-            <span>$6.00</span>
+            <span>${shipping}</span>
           </div>
           <div>
             <p>Shipping Discount</p>
-            <span>-$6.00</span>
+            <span>-${discount}</span>
           </div>
           <div>
             <p>Total</p>
-            <span>$800</span>
+            <span>${sum! - (shipping! + discount!)}</span>
           </div>
           <button>Pay Now</button>
         </PayBox>
@@ -248,7 +281,7 @@ const Cart = () => {
             tempore esse quam eligendi quaerat dolores doloremque nostrum
             praesentium, necessitatibus reiciendis deleniti.
           </p>
-          <div className='logoBox'>
+          <div className="logoBox">
             <Facebook />
             <Instagram />
             <Twitter />
@@ -267,7 +300,7 @@ const Cart = () => {
             <Email /> <p>lsevina126@gmail.com</p>
           </div>
           <div>
-            <img src='images/payment.png' alt='' />
+            <img src="images/payment.png" alt="" />
           </div>
         </FooterRight>
       </Footer>

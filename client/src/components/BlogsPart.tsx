@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogType } from "../pages/Blogs";
+import { BlogType } from "../pages/Home";
 import BlogPart from "./BlogPart";
 
 type BlogsPartPropsType = {

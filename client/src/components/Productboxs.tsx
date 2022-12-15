@@ -1,19 +1,17 @@
-import React from 'react';
-import Productbox from './Productbox';
+import React from "react";
+import { ProductType } from "../pages/Home";
+import Productbox from "./Productbox";
 
-const Productboxs = () => {
+interface ProductboxsPropsType {
+  product?: Array<ProductType>;
+}
+
+const Productboxs = ({ product }: ProductboxsPropsType) => {
   return (
     <>
-      <Productbox />
-      <Productbox />
-      <Productbox />
-      <Productbox />
-      <Productbox />
-      <Productbox />
-      <Productbox />
-      <Productbox />
-      <Productbox />
-      <Productbox />
+      {product?.map((p) => (
+        <Productbox key={p._id} p={p} />
+      ))}
     </>
   );
 };

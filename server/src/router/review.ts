@@ -1,19 +1,21 @@
-import express, { Request, Response, NextFunction } from 'express';
-import Review from '../models/Review';
+import express, { Request, Response, NextFunction } from "express";
+import Review from "../models/Review";
 
 const router = express.Router();
 
-router.post('/', async (req: Request, res: Response, next: NextFunction) => {
+router.post("/", async (req: Request, res: Response, next: NextFunction) => {
   const newReview = new Review(req.body);
   try {
     const savedReview = await newReview.save();
+    console.log(savedReview);
+
     res.status(201).json(savedReview);
   } catch (error) {
     res.status(401).json(error);
   }
 });
 
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reviews = await Review.find();
     res.status(200).json(reviews);
@@ -22,7 +24,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
+router.put("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedReview = await Review.findByIdAndUpdate(
       req.params.id,
@@ -40,13 +42,13 @@ router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.delete(
-  '/:id',
+  "/:id",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const deleted = await Review.findByIdAndDelete(req.params.id);
 
       if (deleted == null) {
-        res.status(404).json('this is not existed!!');
+        res.status(404).json("this is not existed!!");
       } else {
         res.status(204).json(`Reveiw has been deleted...!!`);
       }

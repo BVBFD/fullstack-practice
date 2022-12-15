@@ -1,9 +1,8 @@
 import { ShoppingBag, Login, Logout } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { setNavbar } from "../redux/navbarReducer";
 import { RootState } from "../redux/store";
 import { logOut } from "../redux/userReducer";
 import { mobile } from "../utils/responsive";
@@ -128,38 +127,20 @@ const CartSearchBox = styled.div`
 `;
 
 const Navbar = () => {
-  const navbar = useSelector((state: RootState) => state.navbar.navbar);
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const handleNavbarClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    dispatch(setNavbar(e.currentTarget.innerText.toLowerCase()));
+    window.location.href = `${window.location.protocol}//${
+      window.location.host
+    }/#${e.currentTarget.innerText.toLowerCase()}`;
   };
 
   const onLogout = () => {
     dispatch(logOut());
   };
-
-  useEffect(() => {
-    const moveToHome = `${window.location.protocol}//${window.location.host}/#`;
-    const moveToElse = `${window.location.protocol}//${window.location.host}/#${navbar}`;
-
-    if (navbar === "home" || navbar == null) {
-      window.location.href = `${moveToHome}`;
-    } else if (navbar === "blogs") {
-      navigate("/blogs");
-    } else if (navbar === "contact") {
-      navigate("/contact");
-    } else if (navbar === "login") {
-      navigate("/login");
-    } else {
-      window.location.href = `${moveToElse}`;
-    }
-  }, [navbar]);
 
   return (
     <Container>
@@ -184,10 +165,10 @@ const Navbar = () => {
         <Link to="/" onClick={handleNavbarClick}>
           <MenuText>Review</MenuText>
         </Link>
-        <Link to="/contact">
+        <Link to="/" onClick={handleNavbarClick}>
           <MenuText>Contact</MenuText>
         </Link>
-        <Link to="/blogs">
+        <Link to="/" onClick={handleNavbarClick}>
           <MenuText>Blogs</MenuText>
         </Link>
       </MenuBox>

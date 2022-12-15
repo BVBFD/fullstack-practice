@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { MenuType } from "../pages/Home";
 
 const Box = styled.div`
   color: white;
@@ -55,16 +56,20 @@ const Box = styled.div`
   }
 `;
 
-const Menubox = () => {
+interface MenuboxPropsType {
+  m: MenuType;
+}
+
+const Menubox = ({ m }: MenuboxPropsType) => {
   return (
     <Box>
-      <img src='images/menu-1.png' alt='' />
-      <span className='name'>Americano</span>
-      <div className='priceBox'>
-        <span>$4.99</span>
-        <span>5.99</span>
+      <img src="images/menu-1.png" alt="" />
+      <span className="name">{m.title}</span>
+      <div className="priceBox">
+        <span>${m.price - m.discount}</span>
+        <span>{m.price}</span>
       </div>
-      <button className='menuBoxBtn'>Add To Cart</button>
+      <button className="menuBoxBtn">Add To Cart</button>
     </Box>
   );
 };

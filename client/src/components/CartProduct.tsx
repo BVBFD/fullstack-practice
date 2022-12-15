@@ -1,6 +1,8 @@
-import { CancelPresentation } from '@mui/icons-material';
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { CancelPresentation } from "@mui/icons-material";
+import styled from "styled-components";
+import { CartType } from "./CartProducts";
+import { axiosPublicReq } from "../axiosReqMethods";
 
 const CartLi = styled.li`
   display: flex;
@@ -55,24 +57,43 @@ const Detail = styled.div`
   }
 `;
 
-const CartProduct = () => {
+interface CartProductPropsType {
+  c: CartType;
+}
+
+const CartProduct = ({ c }: CartProductPropsType) => {
+  const [img, setImg] = useState<string>();
+
+  useEffect(() => {
+    const getImg = async () => {
+      try {
+        const res = await axiosPublicReq(`product/${c.productId}`);
+        setImg(res.data.image);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getImg();
+  }, []);
+
   return (
     <CartLi>
       <ImgBox>
-        <Img src='images/product-1.png' />
+        <Img src={`${img}`} />
       </ImgBox>
       <Detail>
         <p>
-          Product : <span>Coffee Beans</span>
+          Product : <span>{c.title}</span>
         </p>
         <p>
-          ID : <span>123456</span>
+          ID : <span>{c.productId}</span>
         </p>
         <p>
-          Quantity : <span>1</span>
+          Quantity : <span>{c.quantity}</span>
         </p>
         <p>
-          Price : <span>$200</span>
+          Price : <span>${c.price}</span>
         </p>
       </Detail>
       <CancelPresentation />

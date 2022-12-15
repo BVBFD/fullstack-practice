@@ -6,13 +6,9 @@ import { mobile } from "./utils/responsive";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import Socket from "socket.io-client";
 import { useDispatch } from "react-redux";
-import { socketConnect } from "./redux/socketReducer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import Blogs from "./pages/Blogs";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 
@@ -76,8 +72,6 @@ function App() {
         <Routes>
           <Route path={"/"}>
             <Route index element={<Home />} />
-            <Route path={"contact"} element={<Contact />} />
-            <Route path={"blogs"} element={<Blogs />} />
             <Route path={"cart"} element={<Cart />} />
             <Route path={"login"} element={<Login />} />
           </Route>

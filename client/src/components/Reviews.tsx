@@ -1,13 +1,11 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import Review from './Review';
-import styled from 'styled-components';
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { mobile } from '../utils/responsive';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import React, { useState } from "react";
+import Review from "./Review";
+import styled from "styled-components";
+import { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { ReviewType } from "../pages/Home";
 
 const ReviewsBox = styled.div`
   display: flex;
@@ -69,11 +67,15 @@ const ReviewsBox = styled.div`
   }
 `;
 
-const Reviews = () => {
-  const [initBodyWid, setInitBodyWid] = useState<number>();
-  const body = document.querySelector('body');
+interface ReviewsPropsType {
+  review?: Array<ReviewType>;
+}
 
-  window.addEventListener('resize', () => {
+const Reviews = ({ review }: ReviewsPropsType) => {
+  const [initBodyWid, setInitBodyWid] = useState<number>();
+  const body = document.querySelector("body");
+
+  window.addEventListener("resize", () => {
     setInitBodyWid(body?.getBoundingClientRect().width);
   });
 
@@ -85,54 +87,11 @@ const Reviews = () => {
         slidesPerView={initBodyWid! < 1024 ? 1 : 3}
         navigation={true}
       >
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Review />
-        </SwiperSlide>
+        {review?.map((r) => (
+          <SwiperSlide key={r._id}>
+            <Review key={r._id} r={r} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </ReviewsBox>
   );

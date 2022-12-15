@@ -1,6 +1,7 @@
-import { Star, StarHalf, StarOutline } from '@mui/icons-material';
-import React from 'react';
-import styled from 'styled-components';
+import { Star, StarHalf } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { ReviewType } from "../pages/Home";
 
 const ReviewBox = styled.div`
   color: white;
@@ -45,27 +46,52 @@ const ReviewBox = styled.div`
   }
 `;
 
-const Review = () => {
+interface ReviewPropsType {
+  r: ReviewType;
+}
+
+const Review = ({ r }: ReviewPropsType) => {
+  const [detail, setDetail] = useState<string>();
+
+  const makeArrayByNum = (n: number) => {
+    const int = Math.floor(n);
+    const decimal = n % int;
+    let newArray = [0, 0, 0, 0, 0];
+    try {
+      for (let i = 0; i < int; i++) {
+        newArray[i] = 1;
+      }
+      const firstZeroIndex = newArray.indexOf(0);
+      newArray[firstZeroIndex] = decimal;
+      return newArray;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setDetail(r.content);
+  }, [r]);
+
   return (
     <ReviewBox>
-      <div className='reviewImgBox'>
-        <img src='images/quote-img.png' />
+      <div className="reviewImgBox">
+        <img src="images/quote-img.png" />
       </div>
-      <div className='detailBox'>
-        <p>
-          Best Coffee Beans and Good Flavors, Better Tasty. <br /> You can take
-          a good time after having done with your works in here.
-        </p>
-        <div className='detailImgBox'>
-          <img src='images/pic-1.png' alt='' />
+      <div className="detailBox">
+        <p dangerouslySetInnerHTML={{ __html: `${detail}` }}></p>
+        <div className="detailImgBox">
+          <img src="images/pic-1.png" alt="" />
         </div>
-        <span>Black Rose</span>
-        <div className='starBox'>
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-          <StarHalf />
+        <span>{r.name}</span>
+        <div className="starBox">
+          {makeArrayByNum(r.stars)?.map((star) => {
+            if (star === 1) {
+              return <Star />;
+            } else {
+              return <StarHalf />;
+            }
+          })}
         </div>
       </div>
     </ReviewBox>
