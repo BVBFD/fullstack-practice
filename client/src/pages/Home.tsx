@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { axiosPublicReq } from "../axiosReqMethods";
 import Menuboxs from "../components/Menuboxs";
@@ -455,6 +455,22 @@ const Home = () => {
   const [number, setNumber] = useState<number>(0);
   const [name, setName] = useState<string>("");
 
+  const [homeY, setHomeY] = useState<number>();
+  const [aboutY, setAboutY] = useState<number>();
+  const [menuY, setMenuY] = useState<number>();
+  const [productsY, setProductsY] = useState<number>();
+  const [reviewY, setReviewY] = useState<number>();
+  const [contactY, setContactY] = useState<number>();
+  const [blogsY, setBlogsY] = useState<number>();
+
+  const homeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const aboutRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const menuRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const reviewRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const blogsRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const productsRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const contactRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+
   const handleSend = () => {
     window.location.href = `mailto:lsevina126@gmail.com?body=[이름]:${name}%0D%0A[전화번호]:${number}%0D%0A[내용]:요청 내용을 적어서주시면 정성스럽게 답변드리겠습니다 ^^`;
   };
@@ -523,9 +539,11 @@ const Home = () => {
     getBlog();
   }, [currentPage]);
 
+  useEffect(() => {}, []);
+
   return (
     <>
-      <HomeSec id="home">
+      <HomeSec id="home" ref={homeRef}>
         <Wrapper>
           <Img src="../images/home-img.jpeg" />
           <TextBox>
@@ -536,7 +554,7 @@ const Home = () => {
           </TextBox>
         </Wrapper>
       </HomeSec>
-      <Sec id="about">
+      <Sec id="about" ref={aboutRef}>
         <Header>
           About <HeaderSpan>Us</HeaderSpan>
         </Header>
@@ -562,7 +580,7 @@ const Home = () => {
           </CommBox>
         </ExplainBox>
       </Sec>
-      <Sec id="menu">
+      <Sec id="menu" ref={menuRef}>
         <Header>
           Our <HeaderSpan>Menu</HeaderSpan>
         </Header>
@@ -570,7 +588,7 @@ const Home = () => {
           <Menuboxs menu={menu} />
         </GridBox>
       </Sec>
-      <Sec id="products">
+      <Sec id="products" ref={productsRef}>
         <Header>
           Our <HeaderSpan>Products</HeaderSpan>
         </Header>
@@ -578,14 +596,14 @@ const Home = () => {
           <Productboxs product={product} />
         </GridBox>
       </Sec>
-      <Sec id="review" style={{ paddingBottom: "8rem" }}>
+      <Sec id="review" ref={reviewRef} style={{ paddingBottom: "8rem" }}>
         <Header>
           Our <HeaderSpan>Review</HeaderSpan>
         </Header>
         <Reviews review={review} />
       </Sec>
 
-      <Sec id="contact">
+      <Sec id="contact" ref={contactRef}>
         <Header>
           About <HeaderSpan>Contact</HeaderSpan>
         </Header>
@@ -615,7 +633,7 @@ const Home = () => {
         </Article>
       </Sec>
 
-      <Sec id="blogs">
+      <Sec id="blogs" ref={blogsRef}>
         <BlogContainer>
           <Header>
             Our <HeaderSpan>Blogs</HeaderSpan>
