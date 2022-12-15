@@ -28,13 +28,6 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("tiny"));
 
-mongoose
-  .connect(process.env.MONGO_DB_URL!, { dbName: "CoffeeShop" })
-  .then(() => console.log("MongoDB has been connected!"))
-  .catch((error) => {
-    throw error;
-  });
-
 // cookie secret key
 app.use(cookieParser(`process.env.SESS`));
 // 만약 세션이 아니라 쿠키만 쓴다면 아래 코드..
@@ -120,6 +113,13 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
     message,
   });
 });
+
+mongoose
+  .connect(`${process.env.MONGO_DB_URL}`, { dbName: "CoffeeShop" })
+  .then(() => console.log("MongoDB has been connected!"))
+  .catch((error) => {
+    throw error;
+  });
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("Hi Seong Eun Lee!");

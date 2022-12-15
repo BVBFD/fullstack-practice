@@ -1,14 +1,17 @@
-import React from 'react';
-import BlogPart from './BlogPart';
+import React from "react";
+import { BlogType } from "../pages/Blogs";
+import BlogPart from "./BlogPart";
 
 type BlogsPartPropsType = {
-  currentPosts: Array<number>;
+  currentPosts: Array<BlogType>;
 };
 
 const BlogsPart = ({ currentPosts }: BlogsPartPropsType) => {
   return (
     <>
-      {currentPosts?.map((post) => (post == null ? <div></div> : <BlogPart />))}
+      {currentPosts?.map((post) =>
+        post == null ? <div></div> : <BlogPart key={post._id} post={post} />
+      )}
     </>
   );
 };

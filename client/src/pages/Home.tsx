@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
+import { axiosPublicReq } from "../axiosReqMethods";
 import Menuboxs from "../components/Menuboxs";
 import Productboxs from "../components/Productboxs";
 import Reviews from "../components/Reviews";
@@ -258,7 +259,85 @@ const Row = styled.div`
   }
 `;
 
+interface MenuType {
+  _id: string;
+  title: string;
+  price: number;
+  image: string;
+  discount: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+interface ProductType {
+  _id: string;
+  title: string;
+  image: string;
+  flavor: number;
+  acidity: number;
+  body: number;
+  sweetness: number;
+  aftertaste: number;
+  price: number;
+  discount: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+interface ReviewType {
+  _id: string;
+  name: string;
+  content: string;
+  img: string;
+  stars: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
 const Home = () => {
+  const [menu, setMenu] = useState<Array<MenuType>>();
+  const [product, setProduct] = useState<Array<ProductType>>();
+  const [review, setReview] = useState<Array<ReviewType>>();
+
+  useEffect(
+    useCallback(() => {
+      const getMenu = async () => {
+        try {
+          const res = await axiosPublicReq.get("/menu");
+          setMenu(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const getProduct = async () => {
+        try {
+          const res = await axiosPublicReq.get("/product");
+          setProduct(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const getReview = async () => {
+        try {
+          const res = await axiosPublicReq.get("/review");
+          setReview(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getMenu();
+      getProduct();
+      getReview();
+    }, []),
+    []
+  );
+
   return (
     <>
       <HomeSec id="home">

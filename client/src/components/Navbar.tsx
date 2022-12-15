@@ -1,5 +1,5 @@
 import { ShoppingBag, Login, Logout } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -147,18 +147,19 @@ const Navbar = () => {
   useEffect(() => {
     const moveToHome = `${window.location.protocol}//${window.location.host}/#`;
     const moveToElse = `${window.location.protocol}//${window.location.host}/#${navbar}`;
+
     if (navbar === "home" || navbar == null) {
       window.location.href = `${moveToHome}`;
+    } else if (navbar === "blogs") {
+      navigate("/blogs");
+    } else if (navbar === "contact") {
+      navigate("/contact");
+    } else if (navbar === "login") {
+      navigate("/login");
     } else {
       window.location.href = `${moveToElse}`;
     }
-
-    return () => {
-      dispatch(setNavbar("/"));
-    };
   }, [navbar]);
-
-  console.log(user);
 
   return (
     <Container>
