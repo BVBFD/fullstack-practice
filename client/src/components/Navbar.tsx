@@ -1,5 +1,5 @@
 import { ShoppingBag, Login, Logout } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -129,13 +129,35 @@ const CartSearchBox = styled.div`
 const Navbar = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
+  const address = `${window.location.protocol}//${window.location.host}/#`;
 
   const handleNavbarClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    window.location.href = `${window.location.protocol}//${
-      window.location.host
-    }/#${e.currentTarget.innerText.toLowerCase()}`;
+    let target = `${e.currentTarget.innerText}`;
+    switch (target.toString()) {
+      case `Home`:
+        window.scroll(0, 0);
+        return;
+      case `About`:
+        window.location.href = `${address}about`;
+        return;
+      case `Menu`:
+        window.location.href = `${address}menu`;
+        return;
+      case `Products`:
+        window.location.href = `${address}products`;
+        return;
+      case `Review`:
+        window.location.href = `${address}review`;
+        return;
+      case `Contact`:
+        window.location.href = `${address}contact`;
+        return;
+      case `Blogs`:
+        window.location.href = `${address}blogs`;
+        return;
+    }
   };
 
   const onLogout = () => {
@@ -150,25 +172,25 @@ const Navbar = () => {
         </Link>
       </LogoBox>
       <MenuBox>
-        <Link to="/" onClick={handleNavbarClick}>
+        <Link to="/#" onClick={handleNavbarClick}>
           <MenuText>Home</MenuText>
         </Link>
-        <Link to="/" onClick={handleNavbarClick}>
+        <Link to="/#about" onClick={handleNavbarClick}>
           <MenuText>About</MenuText>
         </Link>
-        <Link to="/" onClick={handleNavbarClick}>
+        <Link to="/#menu" onClick={handleNavbarClick}>
           <MenuText>Menu</MenuText>
         </Link>
-        <Link to="/" onClick={handleNavbarClick}>
+        <Link to="/#products" onClick={handleNavbarClick}>
           <MenuText>Products</MenuText>
         </Link>
-        <Link to="/" onClick={handleNavbarClick}>
+        <Link to="/#review" onClick={handleNavbarClick}>
           <MenuText>Review</MenuText>
         </Link>
-        <Link to="/" onClick={handleNavbarClick}>
+        <Link to="/#contact" onClick={handleNavbarClick}>
           <MenuText>Contact</MenuText>
         </Link>
-        <Link to="/" onClick={handleNavbarClick}>
+        <Link to="/#blogs" onClick={handleNavbarClick}>
           <MenuText>Blogs</MenuText>
         </Link>
       </MenuBox>

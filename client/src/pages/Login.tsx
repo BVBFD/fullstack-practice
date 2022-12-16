@@ -1,14 +1,14 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { axiosPublicReq } from "../axiosReqMethods";
+import { Home } from "@mui/icons-material";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userReducer";
 
 const LoginSec = styled.section`
   width: 100%;
-  margin-top: 10vh;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +25,29 @@ const LoginSec = styled.section`
     position: absolute;
     width: 100%;
     z-index: -1;
+  }
+
+  .homeIcoon {
+    position: absolute;
+    top: 2%;
+    left: 1%;
+    color: white;
+    transform: scale(1.4);
+    background-color: black;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      color: goldenrod;
+      background-color: white;
+    }
+
+    &:active {
+      transform: scale(1.3);
+    }
   }
 `;
 
@@ -105,6 +128,9 @@ const Login = () => {
 
   return (
     <LoginSec>
+      <Link to="/">
+        <Home className="homeIcoon" />
+      </Link>
       <video src="/videos/Coffee-low.mp4" autoPlay muted loop></video>
       <Wrapper>
         <Header>

@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { darkTheme, lightTheme } from "./utils/Theme";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { mobile } from "./utils/responsive";
 import { Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "./redux/store";
-import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -59,16 +56,11 @@ const Container = styled.div`
 
 function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
-  const state = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
-
-  useEffect(() => {}, []);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
         <GlobalStyle theme={darkMode ? darkTheme : lightTheme} />
-        <Navbar />
         <Routes>
           <Route path={"/"}>
             <Route index element={<Home />} />

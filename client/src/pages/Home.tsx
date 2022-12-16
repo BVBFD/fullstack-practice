@@ -8,6 +8,10 @@ import { mobile } from "../utils/responsive";
 
 import { Pagination, Stack } from "@mui/material";
 import BlogsPart from "../components/BlogsPart";
+import { useDispatch } from "react-redux";
+import { RootState } from "../redux/store";
+import { useSelector } from "react-redux";
+import Navbar from "../components/Navbar";
 
 const HomeSec = styled.section`
   width: 100%;
@@ -455,14 +459,6 @@ const Home = () => {
   const [number, setNumber] = useState<number>(0);
   const [name, setName] = useState<string>("");
 
-  const [homeY, setHomeY] = useState<number>();
-  const [aboutY, setAboutY] = useState<number>();
-  const [menuY, setMenuY] = useState<number>();
-  const [productsY, setProductsY] = useState<number>();
-  const [reviewY, setReviewY] = useState<number>();
-  const [contactY, setContactY] = useState<number>();
-  const [blogsY, setBlogsY] = useState<number>();
-
   const homeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const aboutRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const menuRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -519,7 +515,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // console.log(currentPage, totalPage);
     const getBlog = async () => {
       try {
         const res = await axiosPublicReq("/blog");
@@ -539,10 +534,9 @@ const Home = () => {
     getBlog();
   }, [currentPage]);
 
-  useEffect(() => {}, []);
-
   return (
     <>
+      <Navbar />
       <HomeSec id="home" ref={homeRef}>
         <Wrapper>
           <Img src="../images/home-img.jpeg" />
